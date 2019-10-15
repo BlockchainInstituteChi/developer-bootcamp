@@ -3,17 +3,24 @@ console.log('index.js did load')
 
 var productList = [{
 		"name" : "Model S",
-		"img"  : "https://www.teslarati.com/wp-content/uploads/2019/04/tesla-model-s-1.jpg"
+		"img"  : "https://www.teslarati.com/wp-content/uploads/2019/04/tesla-model-s-1.jpg",
+		"price" : 19999.99
 	},{
 		"name" : "SUV",
-		"img"  : "https://www.tesla.com/content/dam/tesla-site/sx-redesign/img/socialcard/MX.jpg"
+		"img"  : "https://www.tesla.com/content/dam/tesla-site/sx-redesign/img/socialcard/MX.jpg",
+		"price" : 89999.99
 	},{
 		"name" : "Nikolai",
-		"img"  : "https://cdn.britannica.com/49/4649-050-BB5F0463/Nikola-Tesla.jpg"
+		"img"  : "https://cdn.britannica.com/49/4649-050-BB5F0463/Nikola-Tesla.jpg",
+		"price" : 19999999.99
 	}];
 
 
+var pricelist;
+
 document.getElementById('productList').addEventListener('load', loadProducts())
+
+document.getElementById('storeContainer').addEventListener('load', getCurrentPrices())
 
 function loadProducts () {
 
@@ -39,12 +46,77 @@ function displayProduct (div, product, id) {
 	newProduct.appendChild(image);
 	newProduct.appendChild(title);
 
-	newProduct.addEventListener('click', function () { return selectProduct(id) })
+	newProduct.addEventListener('click', function () { return startCheckout(id) })
 
 	div.appendChild(newProduct);
 
 }
 
-function selectProduct ( id ) {
-	console.log('product selected', id)
+function startCheckout ( id ) {
+
+	var btcprice = pricelist.prices[0].price;
+
+	var address = "sssssssss";
+
+	var txuri = generateUri( 'bitcoin', productList[id].price, btcprice, address);
+
+	initCanvas(txuri);
+
+	toggleCheckoutDisplay();
+
+}
+
+function toggleCheckoutDisplay () {
+	var productListClass = document.getElementById('productList').className;
+
+	if ( typeof(productListClass.split('hidden')[1]) != "undefined" ) {
+
+		document.getElementById('checkoutLayer').className = document.getElementById('checkoutLayer').className + " hidden";
+		document.getElementById('productList').className = productListClass.split('hidden').concat(' ')
+
+	} else {
+		
+		document.getElementById('productList').className = productListClass + " hidden";
+		document.getElementById('checkoutLayer').className = document.getElementById('checkoutLayer').className.split('hidden').concat(' ')
+	
+	}
+
+}
+
+function generateUri (currency, price, cryptoprice, address) {
+
+	var amount = price / parseFloat(cryptoprice)
+
+	var transactionuri = "bitcoin:" + address + "?amount=" + amount.toFixed(8) + "?value=" + amount.toFixed(8)
+
+	return transactionuri;
+
+}
+
+function initCanvas (address) {
+
+	var canvas = document.getElementById('qrCode')
+
+	QRCode.toCanvas(canvas, address, function (error) {
+	  if (error) return console.error(error)
+
+	})
+
+}
+
+function cancelCheckout () {
+	console.log('cancelling')
+	toggleCheckoutDisplay();
+
+}
+
+function getCurrentPrices () {
+
+	var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://s3.us-east-2.amazonaws.com/bci-static/misc/ticket.json", false ); // false for synchronous request
+    xmlHttp.send( null );
+    pricelist = JSON.parse(xmlHttp.responseText);
+
+    console.log('done!')
+
 }
