@@ -18,16 +18,22 @@ var productList = [{
 
 var pricelist;
 
-document.getElementById('productList').addEventListener('load', loadProducts())
+document.getElementById('storeContainer').addEventListener('load', initStore())
 
-document.getElementById('storeContainer').addEventListener('load', getCurrentPrices())
+function initStore () {
+	console.log('init ran');
+	getCurrentPrices();
+	loadProducts();
+	document.getElementById('cancelCheckout').addEventListener('click', cancelCheckout);
+
+}
 
 function loadProducts () {
 
-	var productContainer = document.getElementById('productList')
+	var productContainer = document.getElementById('productList');
 
 	for ( var product  in productList ) {
-		displayProduct(productContainer, productList[product], product)
+		displayProduct(productContainer, productList[product], product);
 	}
 
 }
@@ -43,18 +49,32 @@ function displayProduct (div, product, id) {
 	var title           = document.createElement('h1');
 		title.innerText = product.name;
 
+	var price           = document.createElement('span');
+		price.className = "price";
+		price.innerText = product.price;
+
 	newProduct.appendChild(image);
 	newProduct.appendChild(title);
+	newProduct.appendChild(price);
 
 	newProduct.addEventListener('click', function () { return startCheckout(id) })
 
 	div.appendChild(newProduct);
-
+	
 }
 
 function startCheckout ( id ) {
 
-	var btcprice = pricelist.prices[0].price;
+	for ( price in pricelist.prices ) {
+		var priceItem = pricelist.prices[price];
+		if ( priceItem.code === "BTC" ) {
+			var btcprice = priceItem.price
+		}
+	}
+
+	if (!btcprice) {
+		return alert('Unable to get BTC Price.'); 
+	}
 
 	var address = "sssssssss";
 
@@ -67,6 +87,7 @@ function startCheckout ( id ) {
 }
 
 function toggleCheckoutDisplay () {
+
 	var productListClass = document.getElementById('productList').className;
 
 	if ( typeof(productListClass.split('hidden')[1]) != "undefined" ) {
@@ -113,7 +134,7 @@ function cancelCheckout () {
 function getCurrentPrices () {
 
 	var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://s3.us-east-2.amazonaws.com/bci-static/misc/ticket.json", false ); // false for synchronous request
+    xmlHttp.open( "GET", "https://s3.us-east-2.amazonaws.com/bci-static/misc/ticket.json", false ); 
     xmlHttp.send( null );
     pricelist = JSON.parse(xmlHttp.responseText);
 
