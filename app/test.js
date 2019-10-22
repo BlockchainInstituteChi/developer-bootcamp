@@ -29,11 +29,42 @@ sock.connect(addr);
 sock.subscribe('rawtx');
 
 sock.on('message', function(topic, message) {
-  console.log('\r\nreceived raw tx:', message.toString('hex'), "\r\n");
+  // console.log('\r\nreceived raw tx:', message.toString('hex'), "\r\n");
 
   rpc.decodeRawTransaction(message.toString('hex'), function(err, resp) {
-  		console.log("\r\nerr", err, "\r\nresp", resp);
+  		// console.log("\r\nerr", err, "\r\nresp", resp);
 
-        console.log(JSON.stringify(resp, null, 4))
+        // console.log(JSON.stringify(resp, null, 4))
+
+        var inputs = resp.result.vin;
+
+        var outputs = resp.result.vout;
+
+        // console.log('vin', vin, 'vout', vout);
+
+        for ( var vin in inputs ) {
+        	vin = inputs[vin];
+
+        	if ( typeof(vin.scriptPubKey) != 'undefined' ) {
+
+		        if ( typeof(vin.scriptPubKey.addresses) != 'undefined' ) {
+		        	console.log('vin addresses ', vin.scriptPubKey.addresses)
+		        }
+		    
+		    }
+        }
+        
+        for ( var vout in outputs ) {
+        	vout = outputs[vout];
+
+		    if ( typeof(vout.scriptPubKey) != 'undefined'  ) {
+	            
+	        	if ( typeof(vout.scriptPubKey.addresses) != 'undefined'  ) {
+	        		console.log('vout addresses ', vout.scriptPubKey.addresses)
+	        	}
+
+	        }
+	    }
+
   })
 });
