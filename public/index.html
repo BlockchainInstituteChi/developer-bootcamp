@@ -1,5 +1,27 @@
 <head>
 	<title>Bitcoin Store</title>
+</head>
+
+<body>
+	<div id="storeContainer" class="storeContainer">
+		<div id="productList" class="productList">
+			
+		</div>
+		<div id="checkoutLayer" class="checkoutLayer hidden">
+			
+                <div class="backButton" id="cancelCheckout">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+
+                <h1> Scan the QR Code below to donate your funds:</h1>
+                <canvas id="qrCode">
+                </canvas>
+
+		</div>
+	</div>
+</body>
+
+<footer>
 	<script type="text/javascript" src="./js/qrcode.js" defer></script>
 	<script type="text/javascript" src="./index.js" defer></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
@@ -44,22 +66,4 @@
 		}
 
 	</style>
-</head>
-<body>
-	<div id="storeContainer" class="storeContainer">
-		<div id="productList" class="productList">
-			
-		</div>
-		<div id="checkoutLayer" class="checkoutLayer hidden">
-			
-                <div class="backButton" id="cancelCheckout">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-
-                <h1> Scan the QR Code below to donate your funds:</h1>
-                <canvas id="qrCode">
-                </canvas>
-
-		</div>
-	</div>
-</body>
+</footer>

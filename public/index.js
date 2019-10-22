@@ -10,13 +10,17 @@ var productList = [{
 		"img"  : "https://www.tesla.com/content/dam/tesla-site/sx-redesign/img/socialcard/MX.jpg",
 		"price" : 89999.99
 	},{
-		"name" : "Nikolai",
+		"name" : "Nikola",
 		"img"  : "https://cdn.britannica.com/49/4649-050-BB5F0463/Nikola-Tesla.jpg",
 		"price" : 19999999.99
 	}];
 
 
 var pricelist;
+
+var serverUrl = "http://localhost:8887";
+
+var yourBitcoinAddress = "2N6wvyhBUNC9uukhvq3Ztd96U6VFx2mJfYa";
 
 document.getElementById('storeContainer').addEventListener('load', initStore())
 
@@ -25,7 +29,7 @@ function initStore () {
 	getCurrentPrices();
 	loadProducts();
 	document.getElementById('cancelCheckout').addEventListener('click', cancelCheckout);
-
+	checkHelloWorld();
 }
 
 function loadProducts () {
@@ -53,14 +57,14 @@ function displayProduct (div, product, id) {
 		price.className = "price";
 		price.innerText = product.price;
 
-	newProduct.appendChild(image);
-	newProduct.appendChild(title);
-	newProduct.appendChild(price);
+	newProduct.appendChild( image );
+	newProduct.appendChild( title );
+	newProduct.appendChild( price );
 
 	newProduct.addEventListener('click', function () { return startCheckout(id) })
 
 	div.appendChild(newProduct);
-	
+
 }
 
 function startCheckout ( id ) {
@@ -76,7 +80,7 @@ function startCheckout ( id ) {
 		return alert('Unable to get BTC Price.'); 
 	}
 
-	var address = "sssssssss";
+	var address = yourBitcoinAddress;
 
 	var txuri = generateUri( 'bitcoin', productList[id].price, btcprice, address);
 
@@ -123,6 +127,25 @@ function initCanvas (address) {
 
 	})
 
+	if ( document.getElementsByClassName('addressContainer').length > 0 ) {
+
+		for ( var x = 0; x < document.getElementsByClassName('addressContainer').length; x++ ) {
+			document.getElementsByClassName('addressContainer')[x].remove()
+		}
+
+	}
+
+	var addressContainer 		   = document.createElement('div');
+		addressContainer.className = 'addressContainer';
+
+	var addressInput			   = document.createElement('input');
+		addressInput.type 		   = 'text';
+		addressInput.disabled	   = true;
+		addressInput.value		   = address;
+
+	addressContainer.appendChild(addressInput);
+
+	canvas.parentElement.appendChild(addressContainer);
 }
 
 function cancelCheckout () {
@@ -139,5 +162,14 @@ function getCurrentPrices () {
     pricelist = JSON.parse(xmlHttp.responseText);
 
     console.log('done!')
+
+}
+
+function checkHelloWorld () {
+
+	var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", serverUrl + "/helloWorld", false ); 
+    xmlHttp.send( null );
+    console.log('hello World returned', xmlHttp.responseText)
 
 }
