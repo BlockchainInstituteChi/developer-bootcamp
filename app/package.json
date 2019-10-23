@@ -16,6 +16,7 @@
     "bs58check": "^2.1.2",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
+    "eth-hd-wallet": "^0.5.1",
     "ethereumjs-util": "^6.1.0",
     "ethereumjs-wallet": "^0.6.3",
     "express": "^4.17.1",

@@ -16,11 +16,11 @@ const master_pubx = "xpub661MyMwAqRbcEqK6yBmPA38CjWeRppeiAnwRAVY4bBCoP8qiuH12896
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // generate this using examples/derive-master-seed.js
-var extendedPublicKey = "xpub661MyMwAqRbcFCqPYapf73dXBXGDNsRAspRis3zuTfrTh9byhZsFJR4SUEbiaE4KfEQ81ZmMgwgjzR7dHfSQ2cBGYRSV11SEHqGJS6KksYs";
+var extendedPublicKey = "xpub661MyMwAqRbcFFuxU72TqaFAVXJtK96aqbpSvA153xmiR5qiWghhg8WMKQERZSiZrs9wSnJjAS4H6dMuTd3xHh3T2a5JrEaCZwx9CkwJS4T";
 var public_seed 	  = HDKey.fromExtendedKey(extendedPublicKey);
 
 // Pick either ETH or BTC to derive an address
-var currency = "BTC";
+var currency = "ETH";
 
 var bip_level = "49";
 
