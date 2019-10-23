@@ -27,7 +27,7 @@ var bip_level = "49";
 // Let's loop through to demonstrate the use of nonces:
 for ( var i = 0; i < 5; i++ ) { 
 
-	console.log('generating address ', generateAddressFromNonce( public_seed, i, currency ));
+	console.log('generating address ' + i + " ", generateAddressFromNonce( public_seed, i, currency ));
 
 }
 
@@ -45,6 +45,9 @@ function generateAddressFromNonce (public_seed, nonce, currency) {
 
 		// here, we make a path for the derivation based on the nonce used 
 		var PATH = 'm/' + bip_level + '/' + currency_path_code + '/0/0/' + nonce
+
+		console.log('Path is ', PATH)
+
 		var node = public_seed.derive(PATH)
 
 		if ( "ETH" === currency ) {
@@ -62,7 +65,9 @@ function generateAddressFromNonce (public_seed, nonce, currency) {
 		    var chaddress = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey }).address
 
 		}
-		console.log("New Wallet Generated", "\nAt path: " + PATH, "\nFull Node: ", node, "\nPub: " + pubKey, "\nAddr: " + address,  "\nchAddr: " + chaddress, "\n", "\n" )
+
+		// un-comment the line below to see the full generation details for each nonce 
+		// console.log("New Wallet Generated", "\nAt path: " + PATH, "\nFull Node: ", node, "\nPub: " + pubKey, "\nAddr: " + address,  "\nchAddr: " + chaddress, "\n", "\n" )
 		
 		return chaddress
 }
