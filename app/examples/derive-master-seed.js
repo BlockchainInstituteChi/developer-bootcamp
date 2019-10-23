@@ -6,7 +6,6 @@ const _bitcoreMnemonic2 = _interopRequireDefault(_bitcoreMnemonic);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-
 var seed_phrase = new _bitcoreMnemonic2.default(_bitcoreMnemonic2.default.Words.ENGLISH).toString();
 
 var master_priv_key = new _bitcoreMnemonic2.default(seed_phrase).toHDPrivateKey().toString();
