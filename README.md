@@ -1,5 +1,9 @@
 # Blockchain Institute Developer Crash Course
 
+### What is this?
+
+This repo contains instructions and sample code to help users learn to handle cryptocurrency transactions for a basic webstore written in vanilla JS with a node.js server as the back end. The server is stored in app/ and the client is stored in public/.
+
 # Setup
 
 ## Install NPM & Node.js
@@ -65,5 +69,18 @@ zmqpubhashblock=tcp://127.0.0.1:3000
 Open the payment controller at `app/controllers/payment.js` and add your Bitcoin address to the `getAddress` function. Please refer to workshop 1 for more information about how to get your Bitcoin address using bitcoin-cli. 
 
 
-## 2. 
+### C. Add a ZMQ Listener function to the payments controller
+
+Add a new function to the payments controller using the zmq-listen.js script as an example. The function should return 'true' if a payment has been made using the correct currency for the price specified. 
+
+
+## 2. Ethereum Payment Confirmation
+
+### A. Create an Ethereum Wallet
+
+Visit myetherwallet.com and create a new Ethereum wallet. Download the seed, and add the address to the 
+
+## 3. Hierarchical Deterministic Wallets
+
+
 
