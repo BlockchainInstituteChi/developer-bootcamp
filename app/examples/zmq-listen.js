@@ -1,6 +1,6 @@
 // What's your address (Hint: Get it from the bitcoin-cli getnewaddress )
 
-var myAddress = "2N6wvyhBUNC9uukhvq3Ztd96U6VFx2mJfYa";
+var myAddress = "2NEUL36NvtzVdNRqxw3L1sq7PHY5D1Nomr5";
 
 // Library for working with the bitcoin protocol.
 // For working with transactions, hd wallets, etc.
@@ -33,7 +33,7 @@ sock.connect(addr);
 sock.subscribe('rawtx');
 
 sock.on('message', function(topic, message) {
-  // console.log('\r\nreceived raw tx:', message.toString('hex'), "\r\n");
+  console.log('\r\nreceived raw tx:', message.toString('hex'), "\r\n");
 
   rpc.decodeRawTransaction(message.toString('hex'), function(err, resp) {
   		// console.log("\r\nerr", err, "\r\nresp", resp);
@@ -44,7 +44,7 @@ sock.on('message', function(topic, message) {
 
         var outputs = resp.result.vout;
 
-        // console.log('vin', vin, 'vout', vout);
+        console.log('vin', inputs, '\r\n\r\nvout', outputs);
 
         for ( var vin in inputs ) {
         	vin = inputs[vin];
@@ -52,7 +52,7 @@ sock.on('message', function(topic, message) {
         	if ( typeof(vin.scriptPubKey) != 'undefined' ) {
 
 		        if ( typeof(vin.scriptPubKey.addresses) != 'undefined' ) {
-		        	// console.log('vin addresses ', vin.scriptPubKey.addresses)
+		        	console.log('vin addresses ', vin.scriptPubKey.addresses)
 
 		        	for ( var address in vin.scriptPubKey.addresses ) {
 		        		if ( vin.scriptPubKey.addresses[address] === myAddress ) {
@@ -73,7 +73,7 @@ sock.on('message', function(topic, message) {
 		    if ( typeof(vout.scriptPubKey) != 'undefined'  ) {
 	            
 	        	if ( typeof(vout.scriptPubKey.addresses) != 'undefined'  ) {
-	        		// console.log('vout addresses ', vout.scriptPubKey.addresses)
+	        		console.log('vout addresses ', vout.scriptPubKey.addresses)
 
 		        	for ( var address in vout.scriptPubKey.addresses ) {
 		        		if ( vout.scriptPubKey.addresses[address] === myAddress ) {

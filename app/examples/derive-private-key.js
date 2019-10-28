@@ -26,6 +26,7 @@ var seed_phrase = "help velvet truck unlock leg trigger rice armor pilot muscle 
 var master_priv_key = new _bitcoreMnemonic2.default(seed_phrase).toHDPrivateKey().toString();
 
 var seed = HDKey.fromMasterSeed(new Buffer.from(master_priv_key))
+console.log('seed', seed)
 
 for ( var i = 0; i < 5; i++ ) {
 
@@ -38,12 +39,12 @@ function derivePKeyForNonce (nonce, currency, private_seed) {
 	var currency_path_code = getCurrencyCode(currency)
 
 	var PATH = 'm/' + bip_level + '/' + currency_path_code + '/0/0/' + nonce
+
+	console.log('Path is ', PATH)
+
 	var node = private_seed.derive(PATH)
-	// console.log(node)
 
 	var pubKeyx = node._publicKey
-
-	// console.log("\n pubkey is \n " + pubKeyx, pubKeyx.toString('hex').length)
 
 	var privateKey = node._privateKey.toString('hex')
 

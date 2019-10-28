@@ -18,6 +18,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // generate this using examples/derive-master-seed.js
 var extendedPublicKey = "xpub661MyMwAqRbcFFuxU72TqaFAVXJtK96aqbpSvA153xmiR5qiWghhg8WMKQERZSiZrs9wSnJjAS4H6dMuTd3xHh3T2a5JrEaCZwx9CkwJS4T";
 var public_seed 	  = HDKey.fromExtendedKey(extendedPublicKey);
+console.log('seed', public_seed)
 
 // Pick either ETH or BTC to derive an address
 var currency = "ETH";
