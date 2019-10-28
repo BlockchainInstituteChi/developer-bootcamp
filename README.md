@@ -73,6 +73,11 @@ Open the payment controller at `app/controllers/payment.js` and add your Bitcoin
 
 Add a new function to the payments controller using the zmq-listen.js script as an example. The function should return 'true' if a payment has been made using the correct currency for the price specified. 
 
+You may want to build out this functionality inside of the helper function tools in `util/confirmationHelper.js`. If you trigger your ZMQ listener on startup in app.js, you can have it automatically check all new transactions against the existing database. If the address and amount matches, change the transaction's status to 'paid'. 
+
+HINT: To import another file as a module, you can use a require call as shown below:
+```var util     = require('./util/confirmationHelper.js');```
+
 
 ## 2. Ethereum Payment Confirmation
 
@@ -111,7 +116,7 @@ The file at `app/examples/derive-public-keys` uses HD wallet libraries and your 
 
 In order to unlock funds sent to an HD Wallet, it's necessary to derive their private keys using the same path from B and the seed from A. 
 
-Try deriving the private keys for your wallet from B, and test that they work using an online wallet like https://myetherwallet.com or https://bitaddress.org/.
+Try deriving the private keys for your wallet from B, and test that they work using an online wallet like https://myetherwallet.com or https://bitaddress.org/ (See the 'Wallet Details' Tab).
 
 
 ### D. Add Address Derivation to Your Store
