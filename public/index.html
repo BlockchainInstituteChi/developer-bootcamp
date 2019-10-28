@@ -1,30 +1,5 @@
 <head>
 	<title>Bitcoin Store</title>
-</head>
-
-<body>
-	<div id="storeContainer" class="storeContainer">
-		<div id="productList" class="productList">
-			
-		</div>
-		<div id="checkoutLayer" class="checkoutLayer hidden">
-			
-                <div class="backButton" id="cancelCheckout">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-
-                <h1> Scan the QR Code below to donate your funds:</h1>
-                <canvas id="qrCode">
-                </canvas>
-
-		</div>
-	</div>
-</body>
-
-<footer>
-	<script type="text/javascript" src="./js/qrcode.js" defer></script>
-	<script type="text/javascript" src="./index.js" defer></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 	<style>
 		.hidden {
 			display: none;
@@ -64,6 +39,39 @@
 		    float: left;
 		    padding: 0.5em;
 		}
-
+		.checkoutLayer select {
+		    display: block;
+		    margin: auto;
+		}
 	</style>
+</head>
+
+<body>
+	<div id="storeContainer" class="storeContainer">
+		<div id="productList" class="productList">
+			
+		</div>
+		<div id="checkoutLayer" class="checkoutLayer hidden">
+			
+                <div class="backButton" id="cancelCheckout">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+
+                <h1>Scan the QR Code below to make a payment</h1>
+                <h3>Or, use the selector to pick a different currency:</h3>
+                <select id="currencySelector">
+                	<option value="BTC">Bitcoin</option>
+                	<option value="ETH">Ethereum</option>
+                </select>
+                <canvas id="qrCode">
+                </canvas>
+ 
+		</div>
+	</div>
+</body>
+
+<footer>
+	<script type="text/javascript" src="./js/qrcode.js" defer></script>
+	<script type="text/javascript" src="./index.js" defer></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 </footer>

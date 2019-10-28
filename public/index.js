@@ -15,10 +15,44 @@ var scope = {
 		"img"  : "https://cdn.britannica.com/49/4649-050-BB5F0463/Nikola-Tesla.jpg",
 		"price" : 19999999.99
 	}], 
-	serverUrl : "http://localhost:8887"
+	serverUrl : "http://localhost:8887",
+	currencyChoice : {
+		"name" : "Bitcoin",
+		"code" : "BTC"
+	}
 };
 
 document.getElementById('storeContainer').addEventListener('load', initStore())
+
+function initStore () {
+
+	// Initialize the product view and check the server
+	console.log('init ran');
+	loadProducts();
+	checkServerHeartbeat();
+
+	// Load the prices from the CDN and address from the server
+	getAddress(scope.currencyChoice.code);
+	getCurrentPrices();
+
+	// Set Event Listeners
+	document.getElementById('cancelCheckout').addEventListener('click', cancelCheckout);
+	document.getElementById('currencySelector').addEventListener('change', updateCurrencySelection);
+}
+
+function updateCurrencySelection () {
+
+	var currencySelection = document.getElementById('currencySelector');
+	scope.currencyChoice    = {
+		name : currencySelection.options[currencySelection.selectedIndex].text,
+		code : currencySelection.options[currencySelection.selectedIndex].value
+	}
+
+	getAddress (scope.currencyChoice.code);
+	toggleCheckoutDisplay();
+	startCheckout(scope.lastId);
+
+}
 
 function getAddress (currencyCode) {
 
@@ -33,16 +67,7 @@ function getAddress (currencyCode) {
 
 	};
 	xhr.send(data);
-	
-}
 
-function initStore () {
-	console.log('init ran');
-	loadProducts();
-	document.getElementById('cancelCheckout').addEventListener('click', cancelCheckout);
-	checkServerHeartbeat();
-	getAddress('BTC');
-	getCurrentPrices();
 }
 
 function loadProducts () {
@@ -82,18 +107,20 @@ function displayProduct (div, product, id) {
 
 function startCheckout ( id ) {
 
+	scope.lastId = id;
+
 	for ( price in scope.pricelist.prices ) {
 		var priceItem = scope.pricelist.prices[price];
-		if ( priceItem.code === "BTC" ) {
-			var btcprice = priceItem.price
+		if ( priceItem.code === scope.currencyChoice.code ) {
+			var currentprice = priceItem.price
 		}
 	}
 
-	if (!btcprice) {
-		return alert('Unable to get BTC Price.'); 
+	if (!currentprice) {
+		return alert('Unable to get ' + scope.currencyChoice.code + ' Price.'); 
 	}
 
-	var txuri = generateUri( 'bitcoin', scope.productList[id].price, btcprice, scope.address);
+	var txuri = generateUri( scope.currencyChoice.name, scope.productList[id].price, currentprice, scope.address);
 
 	initCanvas(txuri);
 
@@ -123,7 +150,7 @@ function generateUri (currency, price, cryptoprice, address) {
 
 	var amount = price / parseFloat(cryptoprice)
 
-	var transactionuri = "bitcoin:" + address + "?amount=" + amount.toFixed(8) + "?value=" + amount.toFixed(8)
+	var transactionuri = scope.currencyChoice.name.toLowerCase() + ":" + address + "?amount=" + amount.toFixed(8) + "?value=" + amount.toFixed(8)
 
 	return transactionuri;
 
@@ -160,7 +187,7 @@ function initCanvas (address) {
 }
 
 function cancelCheckout () {
-	console.log('cancelling')
+	console.log('Cancelling checkout and clearing address.')
 	toggleCheckoutDisplay();
 
 }
