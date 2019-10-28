@@ -23,12 +23,6 @@ db.on('error', function () {
 var port = config.server_port;
 var router = express.Router();
 
-// Set up H-W routing
-router.get('/', function(req, res) {
-   res.send('Hello World!');
-   console.log('Hello World Ran!');
-});
-
 // Set the target area
 app.use('/api', router);
 
@@ -36,6 +30,7 @@ app.use('/api', router);
 var originsWhitelist = [
   'http://localhost:8001/'
 ];
+
 var corsOptions = {
   origin: function(origin, callback){
         console.log(origin);
@@ -64,7 +59,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 // Include models
-// require('./models/deposit.js');
+require('./model/transaction.js');
 
 // Require routes
 require('./routes.js')(app);
