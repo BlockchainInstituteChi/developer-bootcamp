@@ -56,17 +56,19 @@ function updateCurrencySelection () {
 
 function getAddress (currencyCode) {
 
-	var data = { currency: currencyCode }
+	var data = JSON.stringify({ currency: currencyCode })
+	console.log('sending ', data)
 
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', scope.serverUrl + "/getAddress", true);
+	xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	xhr.send(data);
 	xhr.onload = function () {
 
 	    scope.address = JSON.parse(this.responseText).address;
 	    console.log('getAddress (' + currencyCode + ') returned', scope.address);
 
 	};
-	xhr.send(data);
 
 }
 
