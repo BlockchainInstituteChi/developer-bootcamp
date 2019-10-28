@@ -12,12 +12,12 @@ var cors 	       = require('cors')
 
 
 // Set up the db
-// var mongoUri = 'mongodb://localhost/node';
-// mongoose.connect(mongoUri);
-// var db = mongoose.connection;
-// db.on('error', function () {
-//   throw new Error('unable to connect to database at ' + mongoUri);
-// });
+var mongoUri = 'mongodb://localhost/node';
+mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+var db = mongoose.connection;
+db.on('error', function () {
+  throw new Error('unable to connect to database at ' + mongoUri);
+});
 
 // Set up connectivity
 var port = config.server_port;
