@@ -78,9 +78,53 @@ Add a new function to the payments controller using the zmq-listen.js script as 
 
 ### A. Create an Ethereum Wallet
 
-Visit myetherwallet.com and create a new Ethereum wallet. Download the seed, and add the address to the 
+Visit https://myetherwallet.com and create a new Ethereum wallet. Download the seed, and add the address to the getAddress call in `app/controllers/payment.js`.
+
+
+### B. Use the Ethereum Testnet Faucet to get some ETH
+
+Visit https://faucet.ropsten.be/ to get some test ETH sent to your new wallet.
+
+NOTE: Ethereum has several testnets. These tokens are for the Ropsten testnet. This will be important in the next step.
+
+
+### C. Implement Payment Confirmations via Infura
+
+Infura provides a public registry of the Ethereum Blockchain. Use the example in `app/examples/infura-call.js` to implement an Infura lookup to verify a transaction which has been made to your address. 
+
 
 ## 3. Hierarchical Deterministic Wallets
 
+An HD Wallet allows the user to derive many public and private key pairs from a single cryptographic seed. 
+
+### A. Generate a Seed
+
+Review the code in `app/examples/derive-master-seed.js` and try running it to generate a cryptographic seed.
+
+
+### B. Derive Public Keys
+
+The file at `app/examples/derive-public-keys` uses HD wallet libraries and your extended public key from A to derive a public key for a particular derivation path.
+
+
+### C. Derive Private Keys
+
+In order to unlock funds sent to an HD Wallet, it's necessary to derive their private keys using the same path from B and the seed from A. 
+
+Try deriving the private keys for your wallet from B, and test that they work using an online wallet like https://myetherwallet.com or https://bitaddress.org/.
+
+
+### D. Add Address Derivation to Your Store
+
+Using your knowledge from this module, expand the functionality of `app/controllers/payment.js` to return a new public address for each transaction. 
+
+
+### E. Extra Credit: Write a Sweep Function
+
+Now that you're generating a new address for each transaction, your store is extremely private and secure, but how can you access these funds?
+
+Expand the functionality of your store further by creating a new file called `app/sweepFunction.js` which allows you to generate the private keys for a particular derivation path and seed phrase, and add a call to your Bitcoin Node via the RPC method from 1.C to send a transaction with the full value of that address to a new BTC address which we'll use for cold storage. 
+
+You can get a new BTC address for 'Cold Storage' from http://bitaddress.org
 
 
