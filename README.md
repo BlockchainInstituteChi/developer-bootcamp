@@ -95,7 +95,7 @@ NOTE: Ethereum has several testnets. These tokens are for the Ropsten testnet. T
 
 ### C. Implement Payment Confirmations via Infura
 
-Infura provides a public registry of the Ethereum Blockchain. Use the example in `app/examples/infura-call.js` to implement an Infura lookup to verify a transaction which has been made to your address. 
+Infura provides a public registry of the Ethereum Blockchain. Use the example in `app/examples/infura-listener.js` to implement an Infura listener to verify a transaction which has been made to your address. 
 
 
 ## 3. Hierarchical Deterministic Wallets
