@@ -32,7 +32,7 @@ module.exports = {
 
 			rpc.decodeRawTransaction(message.toString('hex'), function(err, resp) {
 				// Insert your transaction parsing logic here 
-
+				
 			});
 		});
 	}, 

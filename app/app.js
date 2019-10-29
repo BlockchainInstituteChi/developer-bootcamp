@@ -68,3 +68,8 @@ require('./routes.js')(app);
 app.listen(port);
 console.log('Server running on port ' + port);
 
+
+// This section sets up node listeners
+var confirmationHelper = require('./util/confirmationHelper.js');
+
+confirmationHelper.watchBTCNodeForPendingTrans();

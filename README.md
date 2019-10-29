@@ -73,7 +73,9 @@ This is not required as Ubuntu is provided with python as part of the image.
 
 To set up the server, you'll need to enter the app/ directory and install the npm modules with `npm install`
 
-** This will generate a node_modules folder containing the npm dependancy files and may take some time. Do not run this command as your root user. 
+This will generate a node_modules folder containing the npm dependancy files and may take some time. Do not run this command as your root user. 
+
+NOTE: If you already have a working version of npm and node.js, just make sure they're above version 6. If not, you can use the Node Version Manager to install the correct version. 
 
 
 # Launch
@@ -105,7 +107,9 @@ Use the example in app/examples/zmq-listen.js to connect to your Bitcoin node an
 You can use the following command to run the example script:
 ```node examples/zmq-listen.js```
 
-HINT: You'll need to configure your RPC Credentials to match bitcoin.conf, and you will want to add the following lines to bitcoin.conf. 
+Open this file in a text editor to see how it is interacting with your Bitcoin node. 
+
+HINT: You'll need to configure your RPC Credentials to match bitcoin.conf, and you will want to add the following lines to bitcoin.conf. Be sure to restart bitcoind once this is complete. 
 
 ```
 zmqpubrawtx=tcp://127.0.0.1:3000
@@ -114,19 +118,22 @@ zmqpubhashtx=tcp://127.0.0.1:3000
 zmqpubhashblock=tcp://127.0.0.1:3000
 ```
 
+Once this is set up, you can test that the listener is working properly by generating some new blocks to your address:
+
+`bitcoin-cli generatetoaddress 2 < your address >`
+
 ### B. Add Your Address to the Web Store
 
-Open the payment controller at `app/controllers/payment.js` and add your Bitcoin address to the `getAddress` function. Please refer to workshop 1 for more information about how to get your Bitcoin address using bitcoin-cli. 
+Open the payment controller at `app/controllers/payment.js` and add your Bitcoin address to the `getAddress` function. 
+
+You can get an address from your Bitcoin node by running `bitcoin-cli getnewaddress`.
 
 
 ### C. Add a ZMQ Listener function to the payments controller
 
 Add a new function to the payments controller using the zmq-listen.js script as an example. The function should return 'true' if a payment has been made using the correct currency for the price specified. 
 
-You may want to build out this functionality inside of the helper function tools in `util/confirmationHelper.js`. If you trigger your ZMQ listener on startup in app.js, you can have it automatically check all new transactions against the existing database. If the address and amount matches, change the transaction's status to 'paid'. 
-
-HINT: To import another file as a module, you can use a require call as shown below:
-```var util     = require('./util/confirmationHelper.js');```
+You may want to build out this functionality inside of the helper function tools in `util/confirmationHelper.js`. This is imported into the bottom of app.js ( lines 71-73 ) and will be automaticaly triggered on the app startup. 
 
 
 ## 2. Ethereum Payment Confirmation
