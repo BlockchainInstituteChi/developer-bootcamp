@@ -73,6 +73,8 @@ This is not required.
 
 To set up the server, you'll need to enter the app/ directory and install the npm modules with `npm install`
 
+** This will generate a node_modules folder containing the npm dependancy files and may take some time. Do not run this command as your root user. 
+
 
 # Launch
 
