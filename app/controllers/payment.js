@@ -1,7 +1,7 @@
 // Dependancy Declarations
 var mongoose = require('mongoose');
 var tx       = mongoose.model('transaction');
-var util     = require('./util/confirmationHelper.js');
+var util     = require('../util/confirmationHelper.js');
 
 // Function Declarations
 module.exports = {

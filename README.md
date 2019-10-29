@@ -58,7 +58,7 @@ sudo systemctl restart mongod
 
 ### Ubuntu 
 
-This is not required.
+This is not required as Ubuntu is provided with python as part of the image. 
 
 ### Windows
 
