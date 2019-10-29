@@ -21,7 +21,7 @@ var currencySelection = "ETH";
 var bip_level = "49";
 
 // Get a private seed phrase from 'derive-master-seed.js'
-var seed_phrase = "help velvet truck unlock leg trigger rice armor pilot muscle trip fresh";
+var seed_phrase = "movie normal order eye brick supreme avocado word rude much name snow";
 
 var master_priv_key = new _bitcoreMnemonic2.default(seed_phrase).toHDPrivateKey().toString();
 

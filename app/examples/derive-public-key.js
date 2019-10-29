@@ -16,7 +16,7 @@ const master_pubx = "xpub661MyMwAqRbcEqK6yBmPA38CjWeRppeiAnwRAVY4bBCoP8qiuH12896
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // generate this using examples/derive-master-seed.js
-var extendedPublicKey = "xpub661MyMwAqRbcFFuxU72TqaFAVXJtK96aqbpSvA153xmiR5qiWghhg8WMKQERZSiZrs9wSnJjAS4H6dMuTd3xHh3T2a5JrEaCZwx9CkwJS4T";
+var extendedPublicKey = "xpub661MyMwAqRbcEeoqoVkhi2bCjUB3H8EKW1bnKoPYXgvrUuCMdZ7ycVm1P8XAnkCuZ6Fz91LWMaGv1ftmqJrRy3RFzXHWkjKtBEWXDbonu3n";
 var public_seed 	  = HDKey.fromExtendedKey(extendedPublicKey);
 console.log('seed', public_seed)
 
