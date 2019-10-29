@@ -1,5 +1,5 @@
 var Web3 = require('web3');
-var web3 = new Web3('wss://rinkeby.infura.io/ws');
+var web3 = new Web3('wss://ropsten.infura.io/ws');
 
 var subscription = web3.eth.subscribe('pendingTransactions', function(error, result){
     if (!error)

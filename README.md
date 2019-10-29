@@ -20,19 +20,67 @@ This repo contains instructions and sample code to help users learn to handle cr
 
 Install node from http://nodejs.org/download/ and open the node command prompt.
 
-## Install Yarn
+## Install MongoDB
 
-Assuming nodejs/npm is correctly installed, the next step is to install gulp with and then all the project dependencies, along with yarn.
+### Ubuntu
 
-```sudo npm -g install yarn```
+Configure the proper apt-key
+
+```sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4```
+
+#### Ubuntu 18.04
+```echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb.list```
+
+#### Ubuntu 16.04
+```echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb.list```
+
+Install the repo
+```
+sudo apt update
+sudo apt install mongodb-org
+```
+
+```sudo apt install mongodb-org=4.0.1 mongodb-org-server=4.0.1 mongodb-org-shell=4.0.1 mongodb-org-mongos=4.0.1 mongodb-org-tools=4.0.1```
+
+Start the service:
+```
+sudo systemctl enable mongod
+sudo systemctl start mongod 
+```
+
+You can now stop the service with
+```
+sudo systemctl stop mongod
+sudo systemctl restart mongod 
+```
+
+## Install Python 2
+
+### Ubuntu 
+
+This is not required.
+
+### Windows
+
+< This section not yet complete >
+
+### Mac OS
+
+< This section not yet complete >
 
 
-## Launch
+## Install NPM Dependancies
 
+To set up the server, you'll need to enter the app/ directory and install the npm modules with `npm install`
+
+
+# Launch
+
+In order to run this project, you'll need to run a webserver in the public/ directory, and run the node.js app in the app/ directory.
 
 ### Client
 
-Start the react localhost environment from the public/ folder of this project using a local http server. On ubuntu: ```sudo python2 -m SimpleHTTPServer 8001```
+Start the localhost environment from the public/ folder of this project using a local http server. On Ubuntu: ```sudo python2 -m SimpleHTTPServer 8001```
 
 You can then visit the store at `localhost:8001`
 
@@ -42,7 +90,7 @@ Start the node.js application server by running `cd app/ && node app.js`
 
 Once the app is running, you can check the heartbeat function by visiting `http://localhost:8887/helloWorld`
 
-NOTE: You can alternatively run this using nodemon which will restart the server every time you make a change to any file in the app/ directory. To install nodemon, use `npm install -g nodemon` and run the app with `nodemon app.js`.
+NOTE: You can alternatively run this using nodemon which will restart the server every time you make a change to any file in the app/ directory. To install nodemon, use `npm install -g nodemon` and run the app with `nodemon app.js`. The `-g` flag will allow you to use the nodemon npm plugin from the command line. 
 
 
 # Lab Instructions
