@@ -1,6 +1,7 @@
 # Blockchain Institute 
 
 ## Developer Bootcamp
+The Blockchain Institute Developer Bootcamp provides students with a simple framework of a web store to help them explore how blockchain technology can be used to increase security and accountability in digital product development. 
 
 ### Workshop 1: Running a Bitcoin Node
 Our introductory workshop provides an overview of the basic operation of a local Bitcoin node, and the configuration of addresses, transaction creation, and confirmation. This lab uses the RegTest Bitcoin mode, which provides instant confirmations for local transactions for testing purposes. No need to download the whole blockchain - get started with Bitcoin today!
