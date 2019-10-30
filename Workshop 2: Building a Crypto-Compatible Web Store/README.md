@@ -84,6 +84,8 @@ In order to run this project, you'll need to run a webserver in the public/ dire
 
 ### Client
 
+### $$$ REMINDER TO REVISE THIS TO SOME FORM OF NPM SCRIPT RUN FROM THE ROOT FOLDER $$$ 
+
 Start the localhost environment from the public/ folder of this project using a local http server. On Ubuntu: ```sudo python2 -m SimpleHTTPServer 8001```
 
 You can then visit the store at `localhost:8001`
