@@ -1,5 +1,4 @@
-
-console.log('index.js did load')
+console.log('index.js')
 
 function initStore () {
 
