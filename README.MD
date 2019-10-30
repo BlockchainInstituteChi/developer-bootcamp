@@ -1,5 +1,7 @@
 # Blockchain Institute 
 
+Visit [theblockchaininstitute.org]('https://theblockchaininstitute.org') for more free courses and to see upcoming events in the Chicago area.
+
 ## Developer Bootcamp
 The Blockchain Institute Developer Bootcamp provides students with a simple framework of a web store to help them explore how blockchain technology can be used to increase security and accountability in digital product development. 
 
