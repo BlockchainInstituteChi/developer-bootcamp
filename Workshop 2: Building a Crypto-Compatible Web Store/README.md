@@ -71,6 +71,15 @@ This is not required as Ubuntu is provided with python as part of the image.
 
 ## Install NPM Dependancies
 
+### Client Local Hosting
+
+In order to serve the client files, we'll be using the NPM Local Web Server module. To install it, run the command below from the root directory of workshop 2. 
+
+`npm i local-web-server -g ` 
+
+
+### Server
+
 To set up the server, you'll need to enter the app/ directory and install the npm modules with `npm install`
 
 This will generate a node_modules folder containing the npm dependancy files and may take some time. Do not run this command as your root user. 
