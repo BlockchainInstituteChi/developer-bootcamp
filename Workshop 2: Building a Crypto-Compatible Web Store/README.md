@@ -68,6 +68,11 @@ This is not required as Ubuntu is provided with python as part of the image.
 
 < This section not yet complete >
 
+## Install System-Level Packages
+
+### Ubuntu 
+
+`apt-get install libzmq3-dev`
 
 ## Install NPM Dependancies
 

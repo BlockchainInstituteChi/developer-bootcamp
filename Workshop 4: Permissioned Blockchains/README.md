@@ -36,6 +36,7 @@ In this workshop, we'll use a number of Docker Images, which will be deployed to
 
 In this Lab, we'll use a number of Docker containers (which we'll supply you with) to simulate a Hyperledger supply chain, and connect it to your web store. You will not learn much about docker, but we'll help you understand how Hyperledger Chaincode can be used to store semi-immutable records across a network of nodes, and we'll explore how you can connect it with your web store and use it to process changes to the supply chain. 
 
+** Something to remember: In a public blockchain, the network is already up and running, and we just need to push code to it. In a private blockchain, we must simulate our own network in order to test code, and that's where docker comes in. 
 
 
 # Setup
@@ -54,6 +55,9 @@ If it's a Hyperledger node, you can also view the genesis block with:
 
 Or something like that. 
 
+If on ubuntu, be sure to change the permissions of docker.sock (by default this will run only as sudo) e.g. 
+`sudo chown alex:alex /var/run/docker.sock`
+
 
 ## NPM
 
@@ -65,4 +69,14 @@ First, run the build script from the root folder of this project:
 This will automagically configure the docker images for the project and build a **javascript/** folder.
 
 
+## Get the Fabric Samples
+
+`curl -sSL http://bit.ly/2ysbOFE | bash -s`
+
+`cd fabric-samples && export PATH=./bin/:$PATH`
+
+Clean old installs (if this throws an error, that means there wasn't one!)
+
+`docker rm -f $(docker ps -aq)
+docker rmi -f $(docker images | grep fabcar | awk '{print $3}')`
 
