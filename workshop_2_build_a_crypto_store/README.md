@@ -105,6 +105,9 @@ Start the localhost environment from the public/ folder of this project using a 
 
 You can then visit the store at `localhost:8000`
 
+Note: if you need to kill the webserver, this command will work on Unix based systems `kill -9 $(lsof -t -itcp:8000)`
+
+
 ### Server
 
 Start the node.js application server in a new window by running `cd app/ && node app.js`
