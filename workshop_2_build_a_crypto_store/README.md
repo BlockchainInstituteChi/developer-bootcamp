@@ -99,8 +99,6 @@ In order to run this project, you'll need to run a webserver in the public/ dire
 
 ### Client
 
-### $$$ REMINDER TO REVISE THIS TO SOME FORM OF NPM SCRIPT RUN FROM THE ROOT FOLDER $$$ 
-
 Start the localhost environment from the public/ folder of this project using a local http server. You can run `npm install` from the root folder of this workshop to run the npm webserver. 
 
 You can then visit the store at `localhost:8000`
@@ -112,9 +110,9 @@ Note: if you need to kill the webserver, this command will work on Unix based sy
 
 Start the node.js application server in a new window by running `cd app/ && node app.js`
 
-Once the app is running, you can check the heartbeat function by visiting 
+Once the app is running, you can check the heartbeat function by visiting the url below. This will render a page showing you that the server is running properly. 
 
-http://localhost:8887/helloWorld
+http://localhost:8887/
 
 NOTE: You can alternatively run this using nodemon which will restart the server every time you make a change to any file in the app/ directory. To install nodemon, use `npm install -g nodemon` and run the app with `nodemon app.js`. The `-g` flag will allow you to use the nodemon npm plugin from the command line. 
 
