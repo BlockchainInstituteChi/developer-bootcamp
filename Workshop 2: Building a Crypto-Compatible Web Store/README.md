@@ -72,7 +72,8 @@ This is not required as Ubuntu is provided with python as part of the image.
 
 ### Ubuntu 
 
-`apt-get install libzmq3-dev`
+`apt-get install libtool pkg-config build-essential autoconf automake libzmq3-dev`
+
 
 ## Install NPM Dependancies
 
