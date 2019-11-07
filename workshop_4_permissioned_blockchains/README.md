@@ -209,17 +209,32 @@ Now, when you run `node invoke.js` the peer network will update the State Object
 
 Now that you've got a working Hyperledger network, we'll extend the functionality of your web store to feature a live inventory from your supply chain, and to track the change of ownership of each car as it's sold. 
 
+
 ### A. Install Dependancies
 
-In order for the web store to connect to the network of Docker containers, we'll need to move to our app/ directory once again and install the Hyperledger NPM Modules. 
+In order for the web store to connect to the network of Docker containers, we'll need to move to our `app/` directory once again and install the Hyperledger NPM Modules. As with the original set of dependancies, we'll need to install each with npm. 
+
+`npm install fabric-ca-client fabric-network`
+
+We'll also need filesystem access to read the wallet files, so we'll install these as well
+
+`npm install fs path`
+
+If everything works, you should now be able to copy the `wallet/` directory and the `query.js` script to the `app/` directory of your web store and run `node query.js` just like we did in the `fabric-samples/` directory.
 
 
-### B. 
+### B. Add Live Product View
+
+It would be a shame if someone purchase a car from you and you had to refund their cryptocurrency because that car had already been sold. In order to avoid your inventory being out of date, let's configure your store to fetch the product inventory from the hyperledger archive.
+
+The template we've provided already fetches products for the client from the server in the `app/` directory, so we'll just need to update that API function to check Hyperledger for the most recent inventory before displaying products in the store. All you'll need to do is to copy the code from `query.js` and add it to the function called `getProductList` in the file `controllers/store.js`.
+
+Once you've got the car query list displaying in your store, ask an instructor to verify that you've set everything up properly before proceeding to the next step. 
 
 
+### C. Sell a Car
 
-
-### C. 
+In order to sell a car, we will need to update the owner in our Hyperledger network. Use the example we created in 3.D to expand the functionality of your store so that the act of purchasing a car results in the 'owner' field of the car's State Object entry being updated to match the address of the sender of the cryptocurrency payment which was made to pay for it. 
 
 
 
