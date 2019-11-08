@@ -2,7 +2,9 @@
 
 ### What is this?
 
-This repo contains instructions and sample code to help users learn to handle cryptocurrency transactions for a basic webstore written in vanilla JS with a node.js server as the back end. The server is stored in app/ and the client is stored in public/.
+This repo contains instructions and sample code to help users learn to handle cryptocurrency transactions for a basic web store written in vanilla JS with a node.js server as the back end. The server is stored in app/ and the client is stored in public/.
+
+**NOTE:** This web store will act as the framework for all of the following workshops, so you may want to copy the files to another directory outside of the developer bootcamp repo before beginning. This way, you will have the ability to build each workshop into it without needing to update this directory. 
 
 # Setup
 
@@ -21,6 +23,8 @@ This repo contains instructions and sample code to help users learn to handle cr
 Install node from http://nodejs.org/download/ and open the node command prompt.
 
 ## Install MongoDB
+
+We'll use a MongoDB nosql database to store some basic information such as transaction history and unconfirmed crypto transactions. 
 
 ### Ubuntu
 
@@ -54,21 +58,9 @@ sudo systemctl stop mongod
 sudo systemctl restart mongod 
 ```
 
-## Install Python 2
-
-### Ubuntu 
-
-This is not required as Ubuntu is provided with python as part of the image. 
-
-### Windows
-
-< This section not yet complete >
-
-### Mac OS
-
-< This section not yet complete >
-
 ## Install System-Level Packages
+
+Some dependancies will need to be installed before we can use the npm libraries fully. Ask an instructor if you are unable to get these steps to work. 
 
 ### Ubuntu 
 
@@ -90,7 +82,7 @@ To set up the server, you'll need to enter the app/ directory and install the np
 
 This will generate a node_modules folder containing the npm dependancy files and may take some time. Do not run this command as your root user. 
 
-NOTE: If you already have a working version of npm and node.js, just make sure they're above version 6. If not, you can use the Node Version Manager to install the correct version. 
+**NOTE:** If you already have a working version of npm and node.js, just make sure they're above version 6. If not, you can use the Node Version Manager to install the correct version. 
 
 
 # Launch
@@ -103,7 +95,7 @@ Start the localhost environment from the public/ folder of this project using a 
 
 You can then visit the store at `localhost:8000`
 
-Note: if you need to kill the webserver, this command will work on Unix based systems `kill -9 $(lsof -t -itcp:8000)`
+**Note:** if you need to kill the webserver, this command will work on Unix based systems `kill -9 $(lsof -t -itcp:8000)`
 
 
 ### Server
@@ -114,7 +106,7 @@ Once the app is running, you can check the heartbeat function by visiting the ur
 
 http://localhost:8887/
 
-NOTE: You can alternatively run this using nodemon which will restart the server every time you make a change to any file in the app/ directory. To install nodemon, use `npm install -g nodemon` and run the app with `nodemon app.js`. The `-g` flag will allow you to use the nodemon npm plugin from the command line. 
+**NOTE:** You can alternatively run this using nodemon which will restart the server every time you make a change to any file in the app/ directory. To install nodemon, use `npm install -g nodemon` and run the app with `nodemon app.js`. The `-g` flag will allow you to use the nodemon npm plugin from the command line. 
 
 
 # Lab Instructions
@@ -160,6 +152,8 @@ You may want to build out this functionality inside of the helper function tools
 
 ## 2. Ethereum Payment Confirmation
 
+It may come as a suprise, but Bitcoin isn't the only cryptocurrency! 
+
 ### A. Create an Ethereum Wallet
 
 Visit https://myetherwallet.com and create a new Ethereum wallet. Download the seed, and add the address to the getAddress call in `app/controllers/payment.js`.
@@ -169,7 +163,7 @@ Visit https://myetherwallet.com and create a new Ethereum wallet. Download the s
 
 Visit https://faucet.ropsten.be/ to get some test ETH sent to your new wallet.
 
-NOTE: Ethereum has several testnets. These tokens are for the Ropsten testnet. This will be important in the next step.
+**NOTE:** Ethereum has several testnets. These tokens are for the Ropsten testnet. This will be important in the next step.
 
 
 ### C. Implement Payment Confirmations via Infura

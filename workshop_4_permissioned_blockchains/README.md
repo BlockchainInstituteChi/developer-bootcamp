@@ -98,7 +98,6 @@ docker rmi -f $(docker images | grep fabcar | awk '{print $3}')`
 `docker exec cli peer chaincode`
 
 
-
 # Lab Instructions
 
 ## 1. Deploy a network with docker containers
