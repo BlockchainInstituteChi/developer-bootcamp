@@ -1,4 +1,4 @@
-# Blockchain Institute Developer Crash Course
+# Workshop 2: Build a Crypto-Compatible Web Store
 
 ### What is this?
 

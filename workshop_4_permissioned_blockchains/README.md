@@ -1,4 +1,4 @@
-# Blockchain Institute Developer Crash Course
+# Workshop 4: Permissioned Blockchains
 
 ### What is this?
 
