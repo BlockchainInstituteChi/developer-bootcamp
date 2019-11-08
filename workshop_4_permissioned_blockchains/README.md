@@ -45,7 +45,7 @@ In this workshop, we'll use a number of Docker Containers. Each Container will b
 
 In this Lab, we'll use a number of Docker containers (which we'll supply you with) to simulate a Hyperledger supply chain, and connect it to your web store. You will not learn much about docker, but we'll help you understand how Hyperledger Chaincode can be used to store semi-immutable records across a network of nodes, and we'll explore how you can connect it with your web store and use it to process changes to the supply chain. 
 
-** Something to remember: In a public blockchain, the network is already up and running, and we just need to push code to it. In a private blockchain, we must simulate our own network in order to test code, and that's where docker comes in. 
+**Something to Remember:** In a public blockchain, the network is already up and running, and we just need to push code to it. In a private blockchain, we must simulate our own network in order to test code, and that's where docker comes in. 
 
 
 # Setup
@@ -59,18 +59,10 @@ Note: If you ever need to kill all your docker containers and start from scratch
 Once a node is running, you can join it with the following command:
 `docker exec -it cli bash`
 
-If it's a Hyperledger node, you can also view the genesis block with:
-`cat channel-artifacts/genesis.block` 
-
-Or something like that. 
-
 If on ubuntu, be sure to change the permissions of docker.sock (by default this will run only as sudo) e.g. 
 `sudo chown alex:alex /var/run/docker.sock`
 
-It's important to remember that when we are talking about accessing a node, we will do it through the docker cli, and can then access the hyperledger cli tools within that container. For example, the following command will ask the first container in the network (in our case, peer0.example.org) to report their current chain code list. 
-`peer chaincode list --instantiated -C mychannel`
-
-Additionally, because the containers each run independantly, we will need to provide them with access to our files somehow, since they aren't technically on the same machine as our local file system. 
+It's important to remember that when we are talking about accessing a node, we will do it through the docker cli, and can then access the hyperledger cli tools within that container. 
 
 
 ## NPM
@@ -143,7 +135,19 @@ Open `fabric-samples/chaincode/fabcar/javascript/lib/fabcar.js` in a text editor
 
 ### B. Viewing the Ledger
 
-#<? Insert explanation of how to find the genesis block and subsequent blocks, as well as the contract code submission on a node via docker cli ?>
+To view the genesis block, you'll need to access the node via the Docker CLI. To do this, we first need to know the name of our container that the node is running in. 
+
+Once you're connected, you can find the genesis block and channel data in the channel-artifacts/ folder. 
+
+`docker exec -it cli cat channel-artifacts/genesis.block` 
+
+
+## C. Viewing the Chain Code
+
+We can also find the chain code in a similar fashion. The following command will ask the first container in the network (in our case, peer0.example.org) to report their current chain code list. 
+
+`docker exec -it cli peer chaincode list --instantiated -C mychannel`
+
 
 
 ## 3. Using the Hyperledger SDK
