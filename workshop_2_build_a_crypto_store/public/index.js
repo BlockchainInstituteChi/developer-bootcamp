@@ -4,11 +4,11 @@ function initStore () {
 
 	// Initialize the product view and check the server
 	console.log('init ran');
-	loadProducts();
 	checkServerHeartbeat();
 
 	// Load the prices from the CDN and address from the server
 	getAddress(scope.currencyChoice.code);
+	getProductList();
 	getCurrentPrices();
 
 	// Set Event Listeners
@@ -36,6 +36,27 @@ function initStore () {
 		};
 
 	}
+
+	/* getProductList retrieves the most recent product list from the app server */
+	function getProductList () {
+
+		console.log('fetching product list')
+
+		// var data = { }; // This is empty for now, but you will need it for later workshops
+
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', scope.serverUrl + "/getProductList", true);
+		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		xhr.send(null); // replace null with a payload if necessary
+		xhr.onload = function () {
+			console.log(this.responseText);
+		    scope.productList = JSON.parse(this.responseText);
+		    console.log('getProductList returned', scope.productList);
+
+			loadProducts(); // finally, we load the products into the store
+		};
+
+	}	
 
 	/* getCurrentPrices polls the Blockchain Institute price ticket and sets scope.pricesList*/ 
 	function getCurrentPrices () {
@@ -202,19 +223,6 @@ function initStore () {
 
 /* Scope Initialization Values */
 var scope = {
-	productList : [{
-		"name" : "Model S",
-		"img"  : "https://www.teslarati.com/wp-content/uploads/2019/04/tesla-model-s-1.jpg",
-		"price" : 19999.99
-	},{
-		"name" : "SUV",
-		"img"  : "https://www.tesla.com/content/dam/tesla-site/sx-redesign/img/socialcard/MX.jpg",
-		"price" : 89999.99
-	},{
-		"name" : "Nikola",
-		"img"  : "https://cdn.britannica.com/49/4649-050-BB5F0463/Nikola-Tesla.jpg",
-		"price" : 19999999.99
-	}], 
 	serverUrl : "http://localhost:8887",
 	currencyChoice : {
 		"name" : "Bitcoin",

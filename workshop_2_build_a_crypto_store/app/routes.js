@@ -6,5 +6,8 @@ module.exports = function(app){
   var payment = require('./controllers/payment.js');
   app.post('/getAddress', payment.getAddress);
 
+  var store = require('./controllers/store.js');
+  app.post('/getProductList', store.getProductList);
+
 }
 

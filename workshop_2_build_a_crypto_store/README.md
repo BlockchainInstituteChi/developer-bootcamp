@@ -119,6 +119,8 @@ NOTE: You can alternatively run this using nodemon which will restart the server
 
 # Lab Instructions
 
+In this lab, we'll explore how to build a web-store with 
+
 ## 1. Connect Your Bitcoin Node to the Store
 
 ### A. Listen to your Bitcoin Node 
