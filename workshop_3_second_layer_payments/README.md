@@ -24,7 +24,32 @@ Open a new terminal window and type `bitcoind` to start the daemon.
 
 Then, verify that you're connected to the lab peer with `bitcoin-cli listpeers` 
 
-If you do not see the lab node, repeat the setup instructions from Workshop 1. 
+If you do not see the lab node, repeat the setup instructions from Workshop 1. Be sure that your bitcoinf.conf matches the following example:
+
+```
+# Use the regtest network, because we can generate blocks as needed.
+regtest=1
+
+# In this example, we will keep bitcoind running in one terminal window.
+# So we don't need it to run as a daemon.
+daemon=0
+
+# RPC is required for bitcoin-cli.
+server=1
+rpcuser=test
+rpcpassword=test
+
+# In this example we are only interested in receiving raw transactions.
+# The address here is the URL where bitcoind will listen for new ZeroMQ connection requests.
+zmqpubrawtx=tcp://127.0.0.1:3001
+zmqpubrawblock=tcp://127.0.0.1:3000
+zmqpubhashtx=tcp://127.0.0.1:3000
+zmqpubhashblock=tcp://127.0.0.1:3000
+
+[regtest]
+# port=18999
+connect=192.168.86.188
+```
 
 
 ## 2. Install LND
@@ -48,17 +73,21 @@ For Windows WSL users, repeat the same steps above, but 'make' will need to be r
 ## 3. Configure LND
 
 Open your lnd.conf file (located at ~/.lnd/lnd.conf) and replace the contents with the following:
-`bitcoin.active=1
+```
+bitcoin.active=1
 bitcoin.regtest=1
 bitcoin.node=bitcoind
 debuglevel=debug
+
 bitcoind.rpcuser=test
 bitcoind.rpcpass=test
 bitcoind.zmqpubrawtx=tcp://127.0.0.1:3001
 bitcoind.zmqpubrawblock=tcp://127.0.0.1:3000
+
 adminmacaroonpath=~/.lnd/data/chain/bitcoin/regtest/admin.macaroon
 readonlymacaroonpath=~/.lnd/data/chain/bitcoin/regtest/readonly.macaroon
-invoicemacaroonpath=~/.lnd/data/chain/bitcoin/regtest/invoice.macaroon`
+invoicemacaroonpath=~/.lnd/data/chain/bitcoin/regtest/invoice.macaroon
+```
 
 ## 4. Test LND 
 
