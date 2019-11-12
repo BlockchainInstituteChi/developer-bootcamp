@@ -1,5 +1,8 @@
-< insert readme here >
+# Workshop 3: Second Layer Payments
 
+Second Layer solutions use a blockchain as a point of origin and provide possible solutions for scalability by reducing the number of on-chain transactions that need to occur. 
+
+The Bitcoin Lightning network is one such solution which provides users with the ability to send nearly instantaneous bitcoin transactions for a fraction of the fees compared to a traditional transaction. 
 
 ## Install Dependancies
 
@@ -10,6 +13,9 @@
 `brew install go@1.13`
 
 #### Ubuntu 
+
+`sudo apt-get install go`
+
 
 ### Bitcoind 
 
@@ -72,7 +78,7 @@ For Windows WSL users, repeat the same steps above, but 'make' will need to be r
 
 ## 3. Configure LND
 
-Open your lnd.conf file (located at ~/.lnd/lnd.conf) and replace the contents with the following:
+Open your lnd.conf file and replace the contents with the following:
 ```
 bitcoin.active=1
 bitcoin.regtest=1
@@ -89,6 +95,11 @@ readonlymacaroonpath=~/.lnd/data/chain/bitcoin/regtest/readonly.macaroon
 invoicemacaroonpath=~/.lnd/data/chain/bitcoin/regtest/invoice.macaroon
 ```
 
+***lnd.conf Locations***
+Mac: `/Users/< your username>/Library/Application\ Support/Lnd/lnd.conf`
+Ubuntu / Linux: `~/.lnd/lnd.conf`
+Windows: `< need to fill this in >`
+
 ## 4. Test LND 
 
 Open a new terminal window and type `lnd`. 
@@ -100,11 +111,17 @@ In a separate terminal enter the command below to create a Lightning wallet and 
 `lncli create`
 
 
+< Probably need to set up GRPC here > 
+
 ## 6. Check for Peers
 
-Now that you're online, you should be able to see peer nodes on the same Bitcoin network via Regtest. Use the following command to list peer nodes:
+Now that you're online, you should be able to see peer nodes on the same Bitcoin network via Regtest. Connect to a peer with the following command:
 
-`INSERT COMMAND TO USE HERE` 
+`lncli connect peerAddress@path::path` 
+
+Use the following command to list peer nodes:
+
+`lncli listpeers`
 
 
 
