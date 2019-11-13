@@ -6,7 +6,7 @@ var myAddress = "2NEUL36NvtzVdNRqxw3L1sq7PHY5D1Nomr5";
 // For working with transactions, hd wallets, etc.
 var bitcoin = require('bitcoinjs-lib'),
 	RpcClient = require('bitcoind-rpc');
-
+	
 var config = {
     protocol: 'http',
     user: 'test',

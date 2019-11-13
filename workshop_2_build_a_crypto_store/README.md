@@ -4,7 +4,9 @@
 
 This repo contains instructions and sample code to help users learn to handle cryptocurrency transactions for a basic web store written in vanilla JS with a node.js server as the back end. The server is stored in app/ and the client is stored in public/.
 
-**NOTE:** This web store will act as the framework for all of the following workshops, so you may want to copy the files to another directory outside of the developer bootcamp repo before beginning. This way, you will have the ability to build each workshop into it without needing to update this directory. 
+While Node.js isn't a perfect solution for production deployments, it's a useful prototyping environment and supports the majority of the libraries and tools which are needed in crypto and blockchain development. Pay close attention to the libraries being used, as you may need to seek alternatives to them if you find yourself building in a different environment in the future. 
+
+***NOTE:*** *This web store will act as the framework for all of the following workshops, so you may want to copy the files to another directory outside of the developer bootcamp repo before beginning. This way, you will have the ability to build each workshop into it without needing to update this directory.*
 
 # Setup
 
@@ -22,9 +24,22 @@ This repo contains instructions and sample code to help users learn to handle cr
 
 Install node from http://nodejs.org/download/ and open the node command prompt.
 
+## Install the Node Version Manager
+
+This isn't a mandatory step, but it may be useful in the future as some node packages do not support all versions.
+
+`wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash`
+
+Now, you can install and use different node versions with the following commands. For example, we'll install and use version 10:
+
+`nvm i 10`
+
+`nvm use 10`
+
+
 ## Install MongoDB
 
-We'll use a MongoDB nosql database to store some basic information such as transaction history and unconfirmed crypto transactions. 
+We'll use a MongoDB NoSQL database to store some basic information such as transaction history and unconfirmed crypto transactions. 
 
 ### Ubuntu
 
@@ -82,7 +97,7 @@ To set up the server, you'll need to enter the app/ directory and install the np
 
 This will generate a node_modules folder containing the npm dependancy files and may take some time. Do not run this command as your root user. 
 
-**NOTE:** If you already have a working version of npm and node.js, just make sure they're above version 6. If not, you can use the Node Version Manager to install the correct version. 
+***NOTE:*** *If you already have a working version of npm and node.js, just make sure they're above version 6. If not, you can use the Node Version Manager to install the correct version.*
 
 
 # Launch
@@ -95,7 +110,7 @@ Start the localhost environment from the public/ folder of this project using a 
 
 You can then visit the store at `localhost:8000`
 
-**Note:** if you need to kill the webserver, this command will work on Unix based systems `kill -9 $(lsof -t -itcp:8000)`
+***Note:*** *if you need to kill the webserver, this command will work on Unix based systems `kill -9 $(lsof -t -itcp:8000)`*
 
 
 ### Server
@@ -106,7 +121,7 @@ Once the app is running, you can check the heartbeat function by visiting the ur
 
 http://localhost:8887/
 
-**NOTE:** You can alternatively run this using nodemon which will restart the server every time you make a change to any file in the app/ directory. To install nodemon, use `npm install -g nodemon` and run the app with `nodemon app.js`. The `-g` flag will allow you to use the nodemon npm plugin from the command line. 
+***NOTE:*** *You can alternatively run this using nodemon which will restart the server every time you make a change to any file in the app/ directory. To install nodemon, use `npm install -g nodemon` and run the app with `nodemon app.js`. The `-g` flag will allow you to use the nodemon npm plugin from the command line.*
 
 
 # Lab Instructions
@@ -121,9 +136,14 @@ Use the example in app/examples/zmq-listen.js to connect to your Bitcoin node an
 You can use the following command to run the example script:
 ```node examples/zmq-listen.js```
 
-Open this file in a text editor to see how it is interacting with your Bitcoin node. 
+Open this file in a text editor to see how it is interacting with your Bitcoin node. The main thing to look for is the module integrations. You should see several lines like this:
+`require('bitcoinjs-lib');`
+`require('bitcoind-rpc');`
+`require('zeromq');`
 
-HINT: You'll need to configure your RPC Credentials to match bitcoin.conf, and you will want to add the following lines to bitcoin.conf. Be sure to restart bitcoind once this is complete. 
+These are the main NPM libraries being imported. You can always find the full module details and documentation on the official NPM Website: https://www.npmjs.com/
+
+*HINT: You'll need to configure your RPC Credentials to match bitcoin.conf, and you will want to add the following lines to bitcoin.conf. Be sure to restart bitcoind once this is complete.*
 
 ```
 zmqpubrawtx=tcp://127.0.0.1:3000
