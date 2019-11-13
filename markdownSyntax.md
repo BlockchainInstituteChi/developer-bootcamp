@@ -13,5 +13,9 @@
 `You can entere a code snippet like this`
 
 ```
-Or enter a multi-line one like this. 
+Or enter a
+ multi-line
+ one like this. 
 ```
+
+**HINT:**`$ Do not put unnecessary symbols at the front of these as it prevents people from copy pasting with one click`
