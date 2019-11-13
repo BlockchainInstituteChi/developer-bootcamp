@@ -8,9 +8,9 @@
 
 #### Windows (This is a second level header)
 
-***Note:*** *This is a message in italics - the Note title should be in bold Italics. * 
+***Note:*** *This is a message in italics - the Note title should be in bold Italics.* 
 
-`You can entere a code snippet like this`
+`You can enter a code snippet like this`
 
 ```
 Or enter a
@@ -18,4 +18,5 @@ Or enter a
  one like this. 
 ```
 
-**HINT:**`$ Do not put unnecessary symbols at the front of these as it prevents people from copy pasting with one click`
+**HINT:**
+`$ Do not put unnecessary symbols at the front of these as it prevents people from copy pasting with double click`
