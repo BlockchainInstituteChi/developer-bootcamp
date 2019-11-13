@@ -6,7 +6,7 @@ var myAddress = "2NEUL36NvtzVdNRqxw3L1sq7PHY5D1Nomr5";
 // For working with transactions, hd wallets, etc.
 var bitcoin = require('bitcoinjs-lib'),
 	RpcClient = require('bitcoind-rpc');
-
+	
 var config = {
     protocol: 'http',
     user: 'test',
@@ -23,7 +23,7 @@ var zmq = require('zeromq');
 
 // Create a subscriber socket.
 var sock = zmq.socket('sub');
-var addr = 'tcp://127.0.0.1:3000';
+var addr = 'tcp://127.0.0.1:3001';
 
 // Initiate connection to TCP socket.
 sock.connect(addr);
@@ -38,7 +38,7 @@ sock.on('message', function(topic, message) {
   rpc.decodeRawTransaction(message.toString('hex'), function(err, resp) {
   		// console.log("\r\nerr", err, "\r\nresp", resp);
 
-        // console.log(JSON.stringify(resp, null, 4))
+        console.log(JSON.stringify(resp, null, 4))
 
         var inputs = resp.result.vin;
 
