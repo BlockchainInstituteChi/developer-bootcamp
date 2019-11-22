@@ -106,7 +106,7 @@ In order to run this project, you'll need to run a webserver in the public/ dire
 
 ### Client
 
-Start the localhost environment from the public/ folder of this project using a local http server. You can run `npm install` from the root folder of this workshop to run the npm webserver. 
+Start the localhost environment from the public/ folder of this project using a local http server. You can run `npm start` from the `public/` folder of this workshop to run the npm webserver. 
 
 You can then visit the store at `localhost:8000`
 
