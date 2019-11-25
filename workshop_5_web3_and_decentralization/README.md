@@ -4,6 +4,14 @@
 
 This final module of the Blockchain Institute Developer Bootcamp provides a preliminary view of the Web3 technology stack and how it can be used to increase transparency and accountability online. Beginning with a review of the core technologies at play, we'll demonstrate how decentralized storage, computing, and identity can be combined to create digital ecosystems that empower the user and reduce risks of monopolization.
 
+### Contents
+
+1. [Stuff You Should Know](#stuff-you-should-know)
+2. [Ethereum Fundamentals](#ethereum-fundamentals)
+3. [Setup](#setup)
+4. [Lab Instructions](#lab-instructions)
+5. [Next Steps](#next-steps)
+
 # Stuff You Should Know
 
 ## Web3 Stack
@@ -25,21 +33,39 @@ One of the major limitations of the Web 2.0 era comes from the lack of online cr
 
 ## Ethereum Fundamentals
 
-### State Machines
+The Ethereum Virtual Machine (EVM) is the leading Decentralized Computing environment and supports a number of Web3 projects, so it will help to quickly review some terminology. 
 
 ### The Ethereum Virtual Machine (EVM)
 
+Ethereum provides a common protocol that allows a user to interact with a wide network of peers as if they were a single computational device. The EVM is turing complete and uses the custom-built language Solidity for on-chain code. Each peer node independantly runs the code and participates in a consensus model similar to Bitcoin to establish which data should be added to the chain. 
+
+### State Machines
+
+As described in the original Ethereum Whitepaper from 2015, the EVM reimagines the blockchain consensus mechanism as a *State Transition Function* which enables a network of peers to collectively move from one network state to the next. 
+
+In this way, the EVM is imagined as a single state object, which is collectively agreed upon by a majority of peer nodes. This differs from the Bitcoin model as each account has a current balance, and does not require a client to balance the UTXOs to determine the account balance.
+
 ### Smart Contracts
 
+A smart contract is a piece of code which is deployed to the Ethereum blockchain. Once deployed, the contract will have it's own address on the network, similar to a standard wallet, and can be 'triggered' by processing a new transaction which includes an appropriate fee. All computation on-chain must be processed via a smart contract. 
+
 ### Gas
+
+In order to prevent abuse of the network a secondary currency unit known as Gas is used to pay for contract execution or transaction processing. Gas can only be purchased using Ether, and the price of Gas is determined by a publicly transparent auction amongst mining nodes. 
+
+In order to process computations or transactions on-chain, and appropriate amount of gas must be prepaid to the network. Any unused gas is automatically refunded to the account of the sender upon completion of the contract execution. 
+
+# NEED TO CLARIFY GAS PRICING PROCESS
 
 
 # Setup 
 
-In this workshop we'll be using the same web store template that we've built out through the previous 4 modules. 
+In this workshop we'll be using the same web store template that we've built out through the previous 4 modules. To get started, open this store in a browser. You'll want to make sure your hyperledger network from Workshop 4 is still running as well, and be sure that the Lightning CLI wallet runs properly as well.
 
 
 # Lab Instructions
+
+
 
 
 # Next Steps
