@@ -62,10 +62,24 @@ In order to process computations or transactions on-chain, and appropriate amoun
 
 In this workshop we'll be using the same web store template that we've built out through the previous 4 modules. To get started, open this store in a browser. You'll want to make sure your hyperledger network from Workshop 4 is still running as well, and be sure that the Lightning CLI wallet runs properly as well.
 
+# Setup
+
+## Hyperledger
+
+## Bitcoin Node
+
+## Lightning Node
+
 
 # Lab Instructions
 
+## Download the Uport App
 
+## Try the Simple CLI Example
+
+## Add Store Login
+
+## Update Hyperledger 
 
 
 # Next Steps
