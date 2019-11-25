@@ -8,6 +8,13 @@ While Node.js isn't a perfect solution for production deployments, it's a useful
 
 ***NOTE:*** *This web store will act as the framework for all of the following workshops, so you may want to copy the files to another directory outside of the developer bootcamp repo before beginning. This way, you will have the ability to build each workshop into it without needing to update this directory.*
 
+### Contents
+
+1. [Setup](#setup)
+2. [Launch](#launch)
+3. [Lab Instructions](#lab-instructions)
+4. [Next Steps](#next-steps)
+
 # Setup
 
 ## Install NPM & Node.js
