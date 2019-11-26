@@ -2,7 +2,10 @@
 
 # npm modules should not be synced
 app/node_modules
+workshop_2_build_a_crypto_store/app/node_modules
 app/package-lock.json
+workshop_2_build_a_crypto_store/app/package-lock.json
+
 
 # misc
 .DS_Store
