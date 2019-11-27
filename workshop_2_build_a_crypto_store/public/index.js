@@ -169,6 +169,8 @@ function initStore () {
 			}
 		}
 
+		// HANNAH - This is where you will want to add handling for when scope.currencyChoice.code === LNDBTC
+		
 		if (!scope.currentprice) {
 			return alert('Unable to get ' + scope.currencyChoice.code + ' Price.'); 
 		}
