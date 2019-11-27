@@ -32,6 +32,8 @@ function initStore () {
 
 		    scope.address = JSON.parse(this.responseText).address;
 		    console.log('getAddress (' + currencyCode + ') returned', scope.address);
+		    var txuri = generateUri( scope.currencyChoice.name, scope.productList[scope.lastId].price, scope.currentprice, scope.address);
+			initCanvas(txuri);
 
 		};
 
@@ -74,7 +76,7 @@ function initStore () {
 	function checkServerHeartbeat () {
 
 		var xmlHttp = new XMLHttpRequest();
-	    xmlHttp.open( "GET", scope.serverUrl + "/helloWorld", false ); 
+	    xmlHttp.open( "GET", scope.serverUrl + "/", false ); 
 	    xmlHttp.send( null );
 	    console.log('Server is running!')
 
@@ -112,10 +114,11 @@ function initStore () {
 			code : currencySelection.options[currencySelection.selectedIndex].value
 		}
 
-		getAddress (scope.currencyChoice.code);
-		toggleCheckoutDisplay();
-		startCheckout(scope.lastId);
+		setCurrentPrice();
 
+		getAddress (scope.currencyChoice.code);
+		// toggleCheckoutDisplay();
+		
 	}
 
 
@@ -148,23 +151,27 @@ function initStore () {
 
 		scope.lastId = id;
 
-		for ( price in scope.pricelist.prices ) {
-			var priceItem = scope.pricelist.prices[price];
-			if ( priceItem.code === scope.currencyChoice.code ) {
-				var currentprice = priceItem.price
-			}
-		}
+		setCurrentPrice();
 
-		if (!currentprice) {
-			return alert('Unable to get ' + scope.currencyChoice.code + ' Price.'); 
-		}
-
-		var txuri = generateUri( scope.currencyChoice.name, scope.productList[id].price, currentprice, scope.address);
+		var txuri = generateUri( scope.currencyChoice.name, scope.productList[id].price, scope.currentprice, scope.address);
 
 		initCanvas(txuri);
 
 		toggleCheckoutDisplay();
 
+	}
+
+	function setCurrentPrice () {
+		for ( price in scope.pricelist.prices ) {
+			var priceItem = scope.pricelist.prices[price];
+			if ( priceItem.code === scope.currencyChoice.code ) {
+				scope.currentprice = priceItem.price
+			}
+		}
+
+		if (!scope.currentprice) {
+			return alert('Unable to get ' + scope.currencyChoice.code + ' Price.'); 
+		}
 	}
 
 	function toggleCheckoutDisplay () {
@@ -227,7 +234,12 @@ var scope = {
 	currencyChoice : {
 		"name" : "Bitcoin",
 		"code" : "BTC"
-	}
+	},
+	productList : [{
+		price : 0
+	}],
+	lastId : 0,
+	currentprice : 1
 };
 
 /* Trigger the store to load once the page has rendered */
