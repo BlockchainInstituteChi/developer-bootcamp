@@ -11,9 +11,9 @@ module.exports = {
 		// See getAddress() in index.js in the public/ folder for the syntax of a POST request.
 
 		if ( req.body.currency === "ETH" ) {
-			var address = { address: "1234567890abcdefghijklmnopqrstuvwxyz" };
+			var address = { address: "ETH1234567890abcdefghijklmnopqrstuvwxyz" };
 		} else if ( req.body.currency === "BTC" ) {
-			var address = { address: "1234567890abcdefghijklmnopqrstuvwxyz" };
+			var address = { address: "BTC1234567890abcdefghijklmnopqrstuvwxyz" };
 		} else {
 			var address = { address: "1234567890abcdefghijklmnopqrstuvwxyz" };
 		}
