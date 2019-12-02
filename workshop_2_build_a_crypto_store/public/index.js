@@ -32,7 +32,8 @@ function getAddress (currencyName, cryptoprice) {
 
 	    scope.address = JSON.parse(this.responseText).address;
 	    console.log('getAddress (' + currencyName + ') returned', scope.address);
-
+		var txuri = generateUri( scope.currencyChoice.name, scope.productList[scope.lastId].price, scope.currentprice, scope.address);
+		initCanvas(txuri);
 	};
 
 }
@@ -74,7 +75,7 @@ function getCurrentPrices () {
 function checkServerHeartbeat () {
 
 	var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", scope.serverUrl + "/helloWorld", false ); 
+    xmlHttp.open( "GET", scope.serverUrl + "/", false ); 
     xmlHttp.send( null );
     console.log('Server is running!')
 
@@ -126,8 +127,6 @@ function updateCurrencySelection () {
 	var cryptoprice = calcCryptoPrice(scope.lastId);
 
 	getAddress (scope.currencyChoice.name, cryptoprice);
-	toggleCheckoutDisplay();
-	startCheckout(scope.lastId, cryptoprice);
 
 }
 
@@ -177,6 +176,7 @@ function calcCryptoPrice( id ){
 	}
 
 	var cryptoPrice = price / parseFloat(exchangerate)
+	scope.currentprice = cryptoprice;
 
 	return cryptoPrice;
 }
@@ -256,7 +256,9 @@ var scope = {
 	currencyChoice : {
 		"name" : "Bitcoin",
 		"code" : "BTC"
-	}
+	},
+	lastId : 0,
+	currentprice : 1
 };
 
 

@@ -22,7 +22,7 @@ module.exports = {
 			"price" : 19999999.99
 		},{
 			"name" : "Bumper Sticker",
-			"img"  : "https://cdn.britannica.com/49/4649-050-BB5F0463/Nikola-Tesla.jpg",
+			"img"  : "https://i.etsystatic.com/19384612/r/il/71cf14/2136773487/il_794xN.2136773487_4uvv.jpg",
 			"price" : 10.00
 		}]
 	
