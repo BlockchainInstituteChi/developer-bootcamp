@@ -20,6 +20,10 @@ module.exports = {
 			"name" : "Nikola",
 			"img"  : "https://cdn.britannica.com/49/4649-050-BB5F0463/Nikola-Tesla.jpg",
 			"price" : 19999999.99
+		},{
+			"name" : "Bumper Sticker",
+			"img"  : "https://cdn.britannica.com/49/4649-050-BB5F0463/Nikola-Tesla.jpg",
+			"price" : 10.00
 		}]
 	
 		return res.status(200).send(productList)
