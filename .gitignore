@@ -1,11 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # npm modules should not be synced
-app/node_modules
-workshop_2_build_a_crypto_store/app/node_modules
-app/package-lock.json
-workshop_2_build_a_crypto_store/app/package-lock.json
-
+node_modules
+package-lock.json
 
 # misc
 .DS_Store
