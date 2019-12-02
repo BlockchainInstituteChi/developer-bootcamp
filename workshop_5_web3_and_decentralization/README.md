@@ -75,9 +75,47 @@ In this workshop we'll be using the same web store template that we've built out
 
 ## Download the Uport App
 
+Visit the iOS or Google Play store on your mobile device and download the uPort Connect app. Follow the prompts to create a new uPort identity. The private keys for this new identity will be stored on your phone, and new signatures can be posted using the app in order to verify credentials with a particular authority. 
+
+## Look up your registration
+
+When your uPort account was registered, a signature was added to the uPort Registry Smart Contract. You can now look up your public key on this contract using the url below:
+
+
+
+## Log into the institute website
+
+Visit https://theblockchaininstitute.org/wp-login.php to test your new account with our website. 
+
+## Register your own organization
+
+Once you're 
+
 ## Try the Simple CLI Example
 
+Open examples/simpleServer and run 'npm install' to load the dependancies. 
+
+You can now use `node registerIdentity.js` to generate a new address, and add it to lines 16-17 of credentialServer.js to set up a basic credentialling server. 
+
+Try running `node credentialServer.js` and you should receive an ngrok proxy URL through which to view your app. Scan the QR code displayed there with your uPort mobile app to see the verification flow.
+
 ## Add Store Login
+
+### Try the simple login example
+
+Open *example/simpleLogin/* and run `npm install` to load the packages. Once the packages have installed, you can run `node server.js` to launch the example login portal. Open the ngrok url that is printed in a browser to see the portal. 
+
+Before you scan the QR code with uPort mobile, be sure to open the network inspection view of your browser. As you scan the QR Code, make a note of how the disclosure request is received by the client session. 
+
+### Update the simple login to make a selective disclosure request
+
+
+
+### Update your web store
+
+Using the simple login as an example, update your Web Store to allow a user to verify their identity before making a purchase. In order to do this, you'll want to update the login flow to offer the user a choice to verify their identity before proceeding to the checkout. 
+
+In the disclosure request, update the request object to ask the user for their 'BlockchainInstituteID' credential. This selective disclosure request will now return a Blockchain Institute User ID as it was issued when the user logged into our website.  
 
 ## Update Hyperledger 
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Load connect from CDN -->
+    <script src="https://unpkg.com/uport-connect/dist/uport-connect.js"></script>
+  </head>
+  <body>
+    <div id="msg">
+      Give the module a second to load...
+    </div>
+    <script type="text/javascript">
+     //////////////////////////////
+     //  Configure connect object
+     /////////////////////////////
+
+     const Connect = window.uportconnect
+     const uport = new Connect('MyDApp')
+
+     const reqID = 'disclosureReq'
+
+     uport.requestDisclosure()
+
+     uport.onResponse('disclosureReq').then(res => {
+       json = JSON.stringify(res.payload)
+       console.log(json)
+       document.querySelector('#msg').innerHTML = "Congratulations you are now `logged in`.  Here is your DID identifier:  " + json
+     })
+
+     uport.sendVerification({exp: Math.floor(new Date().getTime() / 1000) + 30 * 24 * 60 * 60,
+                             claim: {'Example' : {'Last Seen' : `${new Date()}`}}
+     })
+    </script>
+  </body>
+</html>
