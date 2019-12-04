@@ -32,6 +32,7 @@ function initStore () {
 
 		    scope.address = JSON.parse(this.responseText).address;
 		    console.log('getAddress (' + currencyName + ') returned', scope.address);
+
 			var txuri = generateUri( scope.currencyChoice.name, scope.productList[scope.lastId].price, scope.currentprice, scope.address);
 			initCanvas(txuri);
 		};
@@ -83,21 +84,24 @@ function initStore () {
 
 /* Utilities - Contains: | generateUri |  */
 	/* generateUri prepares a transaction resource locater formatted as currency:address?amount=NUMBER?value=NUMBER  */
-	function generateUri (currencyname, cryptoprice, address) {
+	function generateUri (currencyname, price, cryptoprice, address) {
 
 		 var transactionuri = "";
 
 		// The URI will need to be generated differently for Lightning
 		switch(currencyname) {
-		  case "Ethereum", "Bitcoin":
-		    var transactionuri = scope.currencyChoice.name.toLowerCase() + ":" + address + "?amount=" + cryptoprice.toFixed(8) + "?value=" + cryptoprice.toFixed(8);
+		  case "Bitcoin":
+		    var transactionuri = scope.currencyChoice.name.toLowerCase() + ":" + address + "?amount=" + cryptoprice;
+		    break;
+		  case "Ethereum":
+		    var transactionuri = scope.currencyChoice.name.toLowerCase() + ":" + address + "?amount=" + cryptoprice;
 		    break;
 		  case "Lightning":
 		  // Custom code for invoice QR code construction.
 		  	var transactionuri = address;
 		    break;
 		  default:
-		    var transactionuri = scope.currencyChoice.name.toLowerCase() + ":" + address + "?amount=" + cryptoprice.toFixed(8) + "?value=" + cryptoprice.toFixed(8);
+		    var transactionuri = scope.currencyChoice.name.toLowerCase() + ":" + address + "?amount=" + cryptoprice;
 		} 
 
 		return transactionuri;
