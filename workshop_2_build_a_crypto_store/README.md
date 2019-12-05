@@ -6,7 +6,7 @@ This repo contains instructions and sample code to help users learn to handle cr
 
 While Node.js isn't a perfect solution for production deployments, it's a useful prototyping environment and supports the majority of the libraries and tools which are needed in crypto and blockchain development. Pay close attention to the libraries being used, as you may need to seek alternatives to them if you find yourself building in a different environment in the future. 
 
-***NOTE:*** *This web store will act as the framework for all of the following workshops, so you may want to copy the files to another directory outside of the developer bootcamp repo before beginning. This way, you will have the ability to build each workshop into it without needing to update this directory.*
+***NOTE:*** *The sample webstore can be found in the store/ directory at the root of this repo. Update it as you go to build your own custom store throughout the remainder of this workshop.*
 
 ### Contents
 
@@ -89,7 +89,7 @@ Some dependancies will need to be installed before we can use the npm libraries 
 `apt-get install libtool pkg-config build-essential autoconf automake libzmq3-dev`
 
 
-## Install NPM Dependancies
+## Web Store Setup
 
 ### Client Local Hosting
 
@@ -133,12 +133,12 @@ http://localhost:8887/
 
 # Lab Instructions
 
-In this lab, we'll explore how to build a web-store with 
+In this lab, we'll explore how to build a web-store with integrated cryptocurrency payments. Example scripts can be found in this directory, and should have the dependancies installed with `cd examples && npm i` before use in testing.
 
 ## 1. Connect Your Bitcoin Node to the Store
 
 ### A. Listen to your Bitcoin Node 
-Use the example in app/examples/zmq-listen.js to connect to your Bitcoin node and listen to transactions. Be sure to get your address using the bitcoin-cli shell command, and add it to the example script to listen for transactions from your wallet.
+Use the example in examples/zmq-listen.js to connect to your Bitcoin node and listen to transactions. Be sure to get your address using the bitcoin-cli shell command, and add it to the example script to listen for transactions from your wallet.
 
 You can use the following command to run the example script:
 ```node examples/zmq-listen.js```
@@ -195,7 +195,7 @@ Visit https://faucet.ropsten.be/ to get some test ETH sent to your new wallet.
 
 ### C. Implement Payment Confirmations via Infura
 
-Infura provides a public registry of the Ethereum Blockchain. Use the example in `app/examples/infura-listener.js` to implement an Infura listener to verify a transaction which has been made to your address. 
+Infura provides a public registry of the Ethereum Blockchain. Use the example in `examples/infura-listener.js` to implement an Infura listener to verify a transaction which has been made to your address. 
 
 
 ## 3. Hierarchical Deterministic Wallets
@@ -204,12 +204,12 @@ An HD Wallet allows the user to derive many public and private key pairs from a 
 
 ### A. Generate a Seed
 
-Review the code in `app/examples/derive-master-seed.js` and try running it to generate a cryptographic seed.
+Review the code in `examples/derive-master-seed.js` and try running it to generate a cryptographic seed.
 
 
 ### B. Derive Public Keys
 
-The file at `app/examples/derive-public-keys` uses HD wallet libraries and your extended public key from A to derive a public key for a particular derivation path.
+The file at `examples/derive-public-keys` uses HD wallet libraries and your extended public key from A to derive a public key for a particular derivation path.
 
 
 ### C. Derive Private Keys
