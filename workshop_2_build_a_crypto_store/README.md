@@ -141,7 +141,7 @@ In this lab, we'll explore how to build a web-store with integrated cryptocurren
 Use the example in examples/zmq-listen.js to connect to your Bitcoin node and listen to transactions. Be sure to get your address using the bitcoin-cli shell command, and add it to the example script to listen for transactions from your wallet.
 
 You can use the following command to run the example script:
-```node examples/zmq-listen.js```
+```node zmq-listen.js```
 
 Open this file in a text editor to see how it is interacting with your Bitcoin node. The main thing to look for is the module integrations. You should see several lines like this:
 `require('bitcoinjs-lib');`
@@ -153,7 +153,7 @@ These are the main NPM libraries being imported. You can always find the full mo
 *HINT: You'll need to configure your RPC Credentials to match bitcoin.conf, and you will want to add the following lines to bitcoin.conf. Be sure to restart bitcoind once this is complete.*
 
 ```
-zmqpubrawtx=tcp://127.0.0.1:3000
+zmqpubrawtx=tcp://127.0.0.1:3001
 zmqpubrawblock=tcp://127.0.0.1:3000
 zmqpubhashtx=tcp://127.0.0.1:3000
 zmqpubhashblock=tcp://127.0.0.1:3000
