@@ -37,11 +37,13 @@ This isn't a mandatory step, but it may be useful in the future as some node pac
 
 `wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash`
 
-Now, you can install and use different node versions with the following commands. For example, we'll install and use version 10:
+Now, you can install and use different node versions with the following commands. For example, we'll install and use version 10 for these modules. 
 
-`nvm i 10`
+Install the Node version: `nvm i 10`
 
-`nvm use 10`
+Set your terminal to use this version: `nvm use 10`
+
+After switching versions, you'll always want to delete any remaining `package-lock.json` and `node_modules/` files as these will force old versions of modules to be installed. 
 
 
 ## Install MongoDB
@@ -141,7 +143,7 @@ In this lab, we'll explore how to build a web-store with integrated cryptocurren
 Use the example in examples/zmq-listen.js to connect to your Bitcoin node and listen to transactions. Be sure to get your address using the bitcoin-cli shell command, and add it to the example script to listen for transactions from your wallet.
 
 You can use the following command to run the example script:
-```node examples/zmq-listen.js```
+```node zmq-listen.js```
 
 Open this file in a text editor to see how it is interacting with your Bitcoin node. The main thing to look for is the module integrations. You should see several lines like this:
 `require('bitcoinjs-lib');`
@@ -153,7 +155,7 @@ These are the main NPM libraries being imported. You can always find the full mo
 *HINT: You'll need to configure your RPC Credentials to match bitcoin.conf, and you will want to add the following lines to bitcoin.conf. Be sure to restart bitcoind once this is complete.*
 
 ```
-zmqpubrawtx=tcp://127.0.0.1:3000
+zmqpubrawtx=tcp://127.0.0.1:3001
 zmqpubrawblock=tcp://127.0.0.1:3000
 zmqpubhashtx=tcp://127.0.0.1:3000
 zmqpubhashblock=tcp://127.0.0.1:3000
@@ -162,6 +164,9 @@ zmqpubhashblock=tcp://127.0.0.1:3000
 Once this is set up, you can test that the listener is working properly by generating some new blocks to your address:
 
 `bitcoin-cli generatetoaddress 2 < your address >`
+
+Depending on your configuration, may be necessary to add the --regtest flag like so: 
+`bitcoin-cli --regtest generatetoaddress 10 2N74Lq6GYDo69xnA2sgGFrUiyHzFcDrp6NE`
 
 ### B. Add Your Address to the Web Store
 
