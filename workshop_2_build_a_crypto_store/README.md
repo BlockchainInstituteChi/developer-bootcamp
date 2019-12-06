@@ -37,11 +37,13 @@ This isn't a mandatory step, but it may be useful in the future as some node pac
 
 `wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash`
 
-Now, you can install and use different node versions with the following commands. For example, we'll install and use version 10:
+Now, you can install and use different node versions with the following commands. For example, we'll install and use version 10 for these modules. 
 
-`nvm i 10`
+Install the Node version: `nvm i 10`
 
-`nvm use 10`
+Set your terminal to use this version: `nvm use 10`
+
+After switching versions, you'll always want to delete any remaining `package-lock.json` and `node_modules/` files as these will force old versions of modules to be installed. 
 
 
 ## Install MongoDB
@@ -162,6 +164,9 @@ zmqpubhashblock=tcp://127.0.0.1:3000
 Once this is set up, you can test that the listener is working properly by generating some new blocks to your address:
 
 `bitcoin-cli generatetoaddress 2 < your address >`
+
+Depending on your configuration, may be necessary to add the --regtest flag like so: 
+`bitcoin-cli --regtest generatetoaddress 10 2N74Lq6GYDo69xnA2sgGFrUiyHzFcDrp6NE`
 
 ### B. Add Your Address to the Web Store
 
