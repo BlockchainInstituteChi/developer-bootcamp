@@ -83,11 +83,16 @@ module.exports = {
 						})
 					} else {
 						console.log('the amount did not match, are there possibly multiple records with this address?')
+						res.status(200).send( { success : false } );
 					}
 						
 					
-				}
+				} else {
 					
+					res.status(200).send( { success : false } );
+
+				}
+
 			}
 		})
 
