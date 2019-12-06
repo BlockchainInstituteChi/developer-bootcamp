@@ -32,10 +32,45 @@ function initStore () {
 
 		    scope.address = JSON.parse(this.responseText).address;
 		    console.log('getAddress (' + currencyName + ') returned', scope.address);
-
+		    pollForTx(scope.address, cryptoprice);
 			var txuri = generateUri( scope.currencyChoice.name, scope.productList[scope.lastId].price, scope.currentprice, scope.address);
 			initCanvas(txuri);
 		};
+
+	}
+
+	/* pollForTx - pings the server to see if the transaction has been marked as paid */
+	function pollForTx (address, amount) {
+
+		var data = JSON.stringify({ address: address, amount: amount })
+		console.log('polling for tx ', data)
+
+		var poll = setInterval ( function () {
+			if ( scope.cancelPoll === 1 ) {
+				scope.cancelPoll = 0;
+				cancelPoll();
+			}
+
+			console.log('pinged server for txIsPaid at ' + new Date () )
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', scope.serverUrl + "/txIsPaid", true);
+			xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xhr.send(data);
+
+			xhr.onload = function () {
+				var responseData = JSON.parse(this.responseText);
+			    console.log('txIsPaid (' + address + ') returned', responseData);
+			    if ( responseData.isPaid === true ) {
+			    	scope.cancelPoll = 1;
+			    	console.log('payment found!');
+			    	alert('payment received!');
+			    }
+			};			
+		}, 5000);
+
+		function cancelPoll () {
+			 clearInterval(poll);
+		}
 
 	}
 
