@@ -55,8 +55,13 @@ In order to prevent abuse of the network a secondary currency unit known as Gas 
 
 In order to process computations or transactions on-chain, and appropriate amount of gas must be prepaid to the network. Any unused gas is automatically refunded to the account of the sender upon completion of the contract execution. 
 
-# NEED TO CLARIFY GAS PRICING PROCESS
+### uPort Basics
 
+#### Disclosure Requests
+
+#### Verification
+
+# NEED TO CLARIFY GAS PRICING PROCESS
 
 # Setup 
 
@@ -75,7 +80,8 @@ In this workshop we'll be using the same web store template that we've built out
 
 ## Download the Uport App
 
-Visit the iOS or Google Play store on your mobile device and download the uPort Connect app. Follow the prompts to create a new uPort identity. The private keys for this new identity will be stored on your phone, and new signatures can be posted using the app in order to verify credentials with a particular authority. 
+Visit the iOS or Google Play store on your mobile device and download the uPort Connect app. Follow the prompts to create a new uPort identity. The private keys for this new identity will be stored in an encrypted enclave on your phone, and new signatures can be posted using the app in order to verify credentials with a particular authority. 
+
 
 ## Look up your registration
 

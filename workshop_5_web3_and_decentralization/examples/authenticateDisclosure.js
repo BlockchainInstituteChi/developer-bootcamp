@@ -12,14 +12,15 @@ app.use(bodyParser.json({ type: '*/*' }))
 
 //setup Credentials object with newly created application identity.
 const credentials = new Credentials({
-  appName: 'Login Example',
-  did: 'did:ethr:0x0a625772589d20ff9d3907f56cd07bc96284151a',
-  privateKey: '633150a6e32727ec46c2449015c95bc66ebe4bbd112aa5fb232e3d4b0d06b860'
-});
+  appName: 'BCI000',
+  did: 'did:ethr:0x31486054a6ad2c0b685cd89ce0ba018e210d504e',
+  privateKey: 'ef6a01d0d98ba08bd23ee8b0c650076c65d629560940de9935d0f46f00679e01'
+})
 
 app.get('/', (req, res) => {
   credentials.createDisclosureRequest({
-    verified: ['Name'],
+    requested: ["name", "Identity", "BCILVL"],
+    notifications: true,
     callbackUrl: endpoint + '/callback'
   }).then(requestToken => {
     console.log(decodeJWT(requestToken))  //log request token to console
@@ -31,14 +32,12 @@ app.get('/', (req, res) => {
 
 app.post('/callback', (req, res) => {
   const jwt = req.body.access_token
-  console.log(jwt)
-  console.log(decodeJWT(jwt))
-  credentials.authenticateDisclosureResponse(jwt).then(creds => {
-    //validate specific data per use case
-    console.log('creds returned', creds)
-    console.log('verfied?', creds.verified)
+  console.log(jwt);
+  credentials.authenticateDisclosureResponse(jwt).then(credentials => {
+    console.log(credentials);
+    // Validate the information and apply authorization logic
   }).catch( err => {
-    console.log("oops", err)
+    console.log(err)
   })
 })
 
@@ -46,7 +45,6 @@ app.post('/callback', (req, res) => {
 const server = app.listen(8088, () => {
   ngrok.connect(8088).then(ngrokUrl => {
     endpoint = ngrokUrl
-    console.log(`Verification Service running, open at ${endpoint}`)
+    console.log(`Login Service running, open at ${endpoint}`)
   })
 })
-
