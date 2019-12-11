@@ -24,7 +24,7 @@ Server has startup warnings:
 
 You can now run commands! Try typing `help` to get started.
 
-Note: If this does not work, please be sure to follow the installation instructions in (Workshop 2)[https://github.com/BlockchainInstituteChi/developer-bootcamp/tree/master/workshop_2_build_a_crypto_store#install-mongodb].
+Note: If this does not work, please be sure to follow the installation instructions in [Workshop 2](https://github.com/BlockchainInstituteChi/developer-bootcamp/tree/master/workshop_2_build_a_crypto_store#install-mongodb).
 
 
 ### Basic Commands
@@ -39,12 +39,12 @@ To begin accessing records, select a database with
 ### Using Records
 Once you've opened a database, you can now reference it with the `db` variable as shown in the commands below. In each case, a method receives a filter object, and operates only on records that match. 
 
-`db.collection.find(filter)` will return all the records in a collection
-`db.collection.findOne(filter)` will return a singe record from a collection
-`db.collection.insert('<JSON String>')` will create a new record
-`db.collection.deleteMany(filter)` deletes multiple documents from a collection
+* `db.collection.find(filter)` will return all the records in a collection
+* `db.collection.findOne(filter)` will return a singe record from a collection
+* `db.collection.insert('<JSON String>')` will create a new record
+* `db.collection.deleteMany(filter)` deletes multiple documents from a collection
 
-*NOTE*: In each case, be sure to replace 'collection' with the name of the collection you found with `show collections`.
+***NOTE***: In each case, be sure to replace 'collection' with the name of the collection you found with `show collections`.
 
 For our system, you can clear all transaction records using the following command:
 `db.transactions.deleteMany({})`
@@ -125,6 +125,6 @@ tx.findOne(filter, function (err, record) {
 }
 ```
 
-***Note***: If you are unfamiliar with node.js, you may want to review the concept of (callback functions)[https://guide.freecodecamp.org/javascript/callback-functions/] for handling asynchronous behaviours.
+***Note***: If you are unfamiliar with node.js, you may want to review the concept of [callback functions](https://guide.freecodecamp.org/javascript/callback-functions/) for handling asynchronous behaviours.
  
-(Read the full docs here.)[https://docs.mongodb.com/manual/]
+[Read the full docs here.](https://docs.mongodb.com/manual/)
