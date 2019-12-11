@@ -33,7 +33,7 @@ function initStore () {
 		    scope.address = JSON.parse(this.responseText).address;
 		    console.log('getAddress (' + currencyName + ') returned', scope.address);
 		    pollForTx(scope.address, cryptoprice);
-			var txuri = generateUri( scope.currencyChoice.name, scope.productList[scope.lastId].price, scope.currentprice, scope.address);
+			var txuri = generateUri( scope.currencyChoice.name, scope.productList[scope.lastId].price, scope.address);
 			initCanvas(txuri);
 		};
 
@@ -66,7 +66,7 @@ function initStore () {
 			    	alert('payment received!');
 			    }
 			};			
-		}, 5000);
+		}, 10000);
 
 		function cancelPoll () {
 			 clearInterval(poll);
@@ -119,9 +119,10 @@ function initStore () {
 
 /* Utilities - Contains: | generateUri |  */
 	/* generateUri prepares a transaction resource locater formatted as currency:address?amount=NUMBER?value=NUMBER  */
-	function generateUri (currencyname, price, cryptoprice, address) {
+	function generateUri (currencyname, price, address) {
 
 		 var transactionuri = "";
+		 var cryptoprice = calcCryptoPrice(scope.lastId);
 
 		// The URI will need to be generated differently for Lightning
 		switch(currencyname) {
@@ -165,7 +166,7 @@ function initStore () {
 
 		var cryptoprice = calcCryptoPrice(scope.lastId);
 
-		getAddress (scope.currencyChoice.name, cryptoprice);
+		getAddress (scope.currencyChoice.code, cryptoprice);
 
 	}
 
@@ -225,9 +226,8 @@ function initStore () {
 		scope.lastId = id;
 
 		// startCheckout function runs on refresh. If cryptoprice is not passed it, calculate it! 
-		cryptoprice = cryptoprice === undefined ? calcCryptoPrice(id) : cryptoprice;
 
-		var txuri = generateUri( scope.currencyChoice.name, cryptoprice, scope.address);
+		var txuri = generateUri( scope.currencyChoice.name, scope.productList[scope.lastId].price, scope.address);
 
 		initCanvas(txuri);
 

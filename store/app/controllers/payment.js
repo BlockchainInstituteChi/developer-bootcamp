@@ -11,11 +11,11 @@ module.exports = {
 		// See getAddress() in index.js in the public/ folder for the syntax of a POST request.
 
 		if ( req.body.currency === "ETH" ) {
-			var address = { address: "1234567890abcdefghijklmnopqrstuvwxyz" };
+			var address = { address: "EtherAddress" };
 		} else if ( req.body.currency === "BTC" ) {
-			var address = { address: "1234567890abcdefghijklmnopqrstuvwxyz" };
+			var address = { address: "BTCAddress" };
 		} else {
-			var address = { address: "1234567890abcdefghijklmnopqrstuvwxyz" };
+			var address = { address: "DefaultAddress" };
 		}
 	
 		return res.status(200).send(address)
