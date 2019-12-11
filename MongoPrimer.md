@@ -37,17 +37,17 @@ To begin accessing records, select a database with
 
 
 ### Using Records
-Once you've opened a database, you can now reference it with the `db` variable as shown in the commands below.
+Once you've opened a database, you can now reference it with the `db` variable as shown in the commands below. In each case, a method receives a filter object, and operates only on records that match. 
 
-`db.collection.find()` will return all the records in a collection
-`db.collection.findOne()` will return a singe record from a collection
+`db.collection.find(filter)` will return all the records in a collection
+`db.collection.findOne(filter)` will return a singe record from a collection
 `db.collection.insert('<JSON String>')` will create a new record
-`db.collection.drop()` deletes all documents from a collection
+`db.collection.deleteMany(filter)` deletes multiple documents from a collection
 
 *NOTE*: In each case, be sure to replace 'collection' with the name of the collection you found with `show collections`.
 
 For our system, you can clear all transaction records using the following command:
-`db.transactions.drop()`
+`db.transactions.deleteMany({})`
 
 
 ## Using the NPM Object
