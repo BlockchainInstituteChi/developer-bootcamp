@@ -11,11 +11,11 @@ module.exports = {
 		// See getAddress() in index.js in the public/ folder for the syntax of a POST request.
 
 		if ( req.body.currency === "ETH" ) {
-			var address = { address: "1234567890abcdefghijklmnopqrstuvwxyz" };
+			var address = { address: "EtherAddress" };
 		} else if ( req.body.currency === "BTC" ) {
-			var address = { address: "1234567890abcdefghijklmnopqrstuvwxyz" };
+			var address = { address: "BTCAddress" };
 		} else {
-			var address = { address: "1234567890abcdefghijklmnopqrstuvwxyz" };
+			var address = { address: "DefaultAddress" };
 		}
 	
 		return res.status(200).send(address)
@@ -65,6 +65,10 @@ module.exports = {
 		console.log('searching for transactions with address')
 
 		tx.findOne({ address: address }, function (err, record) {
+			if (!record) {
+				console.log('no records found for address ', address)
+				return res.status(200).send( { success : false } );
+			}
 			if (err) {
 				console.log('err', err);
 			} else {
@@ -83,11 +87,16 @@ module.exports = {
 						})
 					} else {
 						console.log('the amount did not match, are there possibly multiple records with this address?')
+						res.status(200).send( { success : false } );
 					}
 						
 					
-				}
+				} else {
 					
+					res.status(200).send( { success : false } );
+
+				}
+
 			}
 		})
 
