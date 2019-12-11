@@ -65,6 +65,10 @@ module.exports = {
 		console.log('searching for transactions with address')
 
 		tx.findOne({ address: address }, function (err, record) {
+			if (!record) {
+				console.log('no records found for address ', address)
+				return res.status(200).send( { success : false } );
+			}
 			if (err) {
 				console.log('err', err);
 			} else {
