@@ -37,7 +37,7 @@ module.exports = {
 				rpc.decodeRawTransaction(message.toString('hex'), function(err, resp) {
 					// Insert your transaction parsing logic here 
 					// i.e. for (pendingTx) ... if ( resp.address === pendingTx[i].address) then updateTxPaid('1234567890abcdefghijklmnopqrstuvwxyz');
-
+					
 				});
 			});
 
