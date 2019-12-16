@@ -25,9 +25,7 @@ module.exports = {
 	watchBTCNodeForPendingTrans : function watchBTCNodeForTrans () {
 		
 		console.log('initialized watchBTCNodeForTrans');
-		getPendingTx( function(err, result) {
-			var pendingTx = result;
-
+		
 			sock.connect(addr);
 			sock.subscribe('rawtx');
 
@@ -37,11 +35,12 @@ module.exports = {
 				rpc.decodeRawTransaction(message.toString('hex'), function(err, resp) {
 					// Insert your transaction parsing logic here 
 					// i.e. for (pendingTx) ... if ( resp.address === pendingTx[i].address) then updateTxPaid('1234567890abcdefghijklmnopqrstuvwxyz');
-					
+					getPendingTx( function(err, result) {
+						console.log('found pending transactions ', result)
+					});					
 				});
 			});
 
-		});
 	}, 
 	checkIfAddressIsPendingTx : function checkIfAddressIsPendingTx (address) {
 
