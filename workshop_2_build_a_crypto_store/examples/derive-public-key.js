@@ -21,7 +21,7 @@ var public_seed 	  = HDKey.fromExtendedKey(extendedPublicKey);
 console.log('seed', public_seed)
 
 // Pick either ETH or BTC to derive an address
-var currency = "ETH";
+var currency = "BTC";
 
 var bip_level = "49";
 
