@@ -23,24 +23,22 @@ var addr = 'tcp://127.0.0.1:3000';
 
 module.exports = {
 	watchBTCNodeForPendingTrans : function watchBTCNodeForTrans () {
-		
+		// This function configures the zmq listener
 		console.log('initialized watchBTCNodeForTrans');
 		
-			sock.connect(addr);
-			sock.subscribe('rawtx');
+		sock.connect(addr);
+		sock.subscribe('rawtx');
+		sock.on('message', function(topic, message) {
+			console.log('\r\nreceived raw tx:', message.toString('hex'), "\r\n");
 
-			sock.on('message', function(topic, message) {
-				console.log('\r\nreceived raw tx:', message.toString('hex'), "\r\n");
-
-				rpc.decodeRawTransaction(message.toString('hex'), function(err, resp) {
-					// Insert your transaction parsing logic here 
-					// i.e. for (pendingTx) ... if ( resp.address === pendingTx[i].address) then updateTxPaid('1234567890abcdefghijklmnopqrstuvwxyz');
-					getPendingTx( function(err, result) {
-						console.log('found pending transactions ', result)
-					});					
+			rpc.decodeRawTransaction(message.toString('hex'), function(err, resp) {
+				// Insert your transaction parsing logic here 
+				// i.e. for (pendingTx) ... if ( resp.address === pendingTx[i].address) then updateTxPaid('1234567890abcdefghijklmnopqrstuvwxyz');
+				getPendingTx( function(err, result) {
+					console.log('found pending transactions ', result)
 				});
 			});
-
+		});
 	}, 
 	checkIfAddressIsPendingTx : function checkIfAddressIsPendingTx (address) {
 
@@ -77,7 +75,17 @@ function updateTxPaid (paidAddress, paidAmount) {
 
 function getPendingTx ( cb ) {
 
-	tx.find({ status: "pending" }, function (err, record) {
+	// We will ignore all tx older than fifteen minutes
+	var date = (new Date()).getTime() - 900000;
+
+	console.log('date', date);
+
+	var filter = { 
+		status: "pending", 
+		timeStamp: { $gt: date } 
+	};
+
+	tx.find(filter, function (err, record) {
 		console.log('tx.find returned ', err, record)
 		cb (err, record);
 	})

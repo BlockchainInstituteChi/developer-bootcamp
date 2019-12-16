@@ -80,7 +80,7 @@ function newTransaction (amount, product, nonce, currency, address, callback ) {
 		  product   : product,
 		  status    : 'pending',
 		  nonce     : nonce,
-		  timeStamp : new Date(),
+		  timeStamp : (new Date()).getTime(),
 		  address   : address,
 		  currency  : currency,
 	};
