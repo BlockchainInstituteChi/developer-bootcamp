@@ -33,12 +33,6 @@ for ( var i = 0; i < 5; i++ ) {
 }
 
 
-
-
-
-
-
-
 // Returns a new address for a given public extended key, nonce, and currency
 function generateAddressFromNonce (public_seed, nonce, currency) {
 
