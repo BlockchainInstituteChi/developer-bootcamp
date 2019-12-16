@@ -126,7 +126,7 @@ Use the examples from 3.B to create a function, and pass the nonce value you use
 *Thought:* Should you use sequential nonce values? Justify your answer.
 
 
-### E. Extra Credit: Write a Sweep Function
+### C. Extra Credit: Write a Sweep Function
 
 Now that you're generating a new address for each transaction, your store is extremely private and secure, but how can you access these funds?
 

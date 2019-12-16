@@ -16,7 +16,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 // Settings
-var currencySelection = "ETH";
+var currencySelection = "BTC";
 
 var bip_level = "49";
 
