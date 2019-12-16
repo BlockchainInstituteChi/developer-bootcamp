@@ -21,7 +21,7 @@ function initStore () {
 	/* getAddress receives a currency code like BTC or ETH and queries the server for the receipt address */
 	function getAddress (currencyName, cryptoprice) {
 
-		var data = JSON.stringify({ currency: currencyName, price: cryptoprice })
+		var data = JSON.stringify({ currency: currencyName, price: cryptoprice, product: scope.lastId })
 		console.log('sending ', data)
 
 		var xhr = new XMLHttpRequest();
@@ -29,10 +29,11 @@ function initStore () {
 		xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 		xhr.send(data);
 		xhr.onload = function () {
+			var respData = JSON.parse(this.responseText);
 
-		    scope.address = JSON.parse(this.responseText).address;
+		    scope.address = respData.address;
 		    console.log('getAddress (' + currencyName + ') returned', scope.address);
-		    pollForTx(scope.address, cryptoprice);
+		    pollForTx(respData.txId);
 			var txuri = generateUri( scope.currencyChoice.name, scope.productList[scope.lastId].price, scope.address);
 			initCanvas(txuri);
 		};
@@ -40,9 +41,9 @@ function initStore () {
 	}
 
 	/* pollForTx - pings the server to see if the transaction has been marked as paid */
-	function pollForTx (address, amount) {
+	function pollForTx (txId) {
 
-		var data = JSON.stringify({ address: address, amount: amount })
+		var data = JSON.stringify({ txId: txId })
 		console.log('polling for tx ', data)
 
 		var poll = setInterval ( function () {
@@ -59,7 +60,7 @@ function initStore () {
 
 			xhr.onload = function () {
 				var responseData = JSON.parse(this.responseText);
-			    console.log('txIsPaid (' + address + ') returned', responseData);
+			    console.log('txIsPaid (' + txId + ') returned', responseData);
 			    if ( responseData.isPaid === true ) {
 			    	scope.cancelPoll = 1;
 			    	console.log('payment found!');

@@ -128,3 +128,16 @@ tx.findOne(filter, function (err, record) {
 ***Note***: If you are unfamiliar with node.js, you may want to review the concept of [callback functions](https://guide.freecodecamp.org/javascript/callback-functions/) for handling asynchronous behaviours.
  
 [Read the full docs here.](https://docs.mongodb.com/manual/)
+
+
+### Retrieving Last Record by Timestamp
+
+To the last paid transaction for a particular currency you can use the following snippet:
+
+```
+tx.findOne({ currency: 'BTC', status: 'paid' }).sort({'timestamp':-1}).forEach( 
+   function(doc){ 
+      lastTimeStamp = doc._id.getTimestamp(); 
+   }
+)
+```

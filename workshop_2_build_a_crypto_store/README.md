@@ -2,7 +2,7 @@
 
 ### What is this?
 
-This repo contains instructions and sample code to help users learn to handle cryptocurrency transactions for a basic web store written in vanilla JS with a node.js server as the back end. The server is stored in app/ and the client is stored in public/.
+This repo contains instructions and sample code to help users learn to handle cryptocurrency transactions for a basic web store written in vanilla JS with a node.js server as the back end.
 
 While Node.js isn't a perfect solution for production deployments, it's a useful prototyping environment and supports the majority of the libraries and tools which are needed in crypto and blockchain development. Pay close attention to the libraries being used, as you may need to seek alternatives to them if you find yourself building in a different environment in the future. 
 
@@ -23,7 +23,7 @@ In this lab, we'll explore how to build a web-store with integrated cryptocurren
 ## 1. Connect Your Bitcoin Node to the Store
 
 ### A. Listen to your Bitcoin Node 
-Use the example in examples/zmq-listen.js to connect to your Bitcoin node and listen to transactions. Be sure to get your address using the bitcoin-cli shell command, and add it to the example script to listen for transactions from your wallet.
+Use the example in `examples/zmq-listen.js` to connect to your Bitcoin node and listen to transactions. Be sure to get your address using the bitcoin-cli shell command, and add it to the example script to listen for transactions from your wallet.
 
 You can use the following command to run the example script:
 ```node zmq-listen.js```
@@ -58,11 +58,11 @@ Open the payment controller at `app/controllers/payment.js` and add your Bitcoin
 You can get an address from your Bitcoin node by running `bitcoin-cli getnewaddress`.
 
 
-### C. Add a ZMQ Listener function to the payments controller
+### C. Configure the ZMQ Listener 
 
-Add a new function to the payments controller using the zmq-listen.js script as an example. The function should return 'true' if a payment has been made using the correct currency for the price specified. 
+The Confirmation Helper is imported into the bottom of app.js ( lines 71-73 ) and will be automaticaly triggered on the app startup. 
 
-You may want to build out this functionality inside of the helper function tools in `util/confirmationHelper.js`. This is imported into the bottom of app.js ( lines 71-73 ) and will be automaticaly triggered on the app startup. 
+Review the `watchBTCNodeForPendingTrans` function in `util/confirmationHelper.js` and add parsing logic to handle the RPC decoded data as demonstrated in `zmq-listen.js`. Once this has been configured properly, your store should update the transaction record in MongoDB to 'status : "paid"'.
 
 
 ## 2. Ethereum Payment Confirmation
@@ -106,10 +106,24 @@ In order to unlock funds sent to an HD Wallet, it's necessary to derive their pr
 
 Try deriving the private keys for your wallet from B, and test that they work using an online wallet like https://myetherwallet.com or https://bitaddress.org/ (See the 'Wallet Details' Tab).
 
-
-### D. Add Address Derivation to Your Store
+## 4. Integrate HD Address Derivation into your Web Store 
 
 Using your knowledge from this module, expand the functionality of `app/controllers/payment.js` to return a new public address for each transaction. 
+
+### A. Add a Helper Function to the Payment Controller
+
+Let's add a new function to `payment.js` to derive a key for a given currency. This function should take a currency code (BTC) as an argument and query the database to find the last nonce value used for that currency. 
+
+*Hint:* Check out MongoPrimer.md in the root folder of this bootcamp for help retrieving records by their timestamp! [Here](https://github.com/BlockchainInstituteChi/developer-bootcamp/MongoPrimer.md#Retrieving-Last-Record-by-Timestamp)
+
+
+### B. Add BTC Address Derivation
+
+Expand the `getAddress()` definition in `payment.js` to generate a new HD wallet address. 
+
+Use the examples from 3.B to create a function, and pass the nonce value you use into the `newTransaction()` so that you can generate the correct private key later!
+
+*Thought:* Should you use sequential nonce values? Justify your answer.
 
 
 ### E. Extra Credit: Write a Sweep Function
