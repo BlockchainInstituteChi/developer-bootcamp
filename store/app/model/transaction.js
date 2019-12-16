@@ -8,7 +8,7 @@ var txSchema = new Schema ({
   product   : String,
   status    : String,
   nonce     : String,
-  timeStamp : Date,
+  timeStamp : Number,
   address   : String,
   currency  : String,
 });
