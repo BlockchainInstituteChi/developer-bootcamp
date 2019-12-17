@@ -59,7 +59,7 @@ module.exports = {
 						        		console.log('checking pending transaction', pendingTransaction)
 					        			// Insert your comparison logic here to identify paid transactions
 					        			// Then run updateTxPaid( pendingTransaction._id )
-
+					        			
 						        	}
 
 					        	}
