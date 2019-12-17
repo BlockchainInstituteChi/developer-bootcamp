@@ -20,7 +20,7 @@ module.exports = {
 		 	result = { address: "DefaultAddress" };
 		}
 		
-		newTransaction( req.body.amount, req.body.product, ( Math.random() * 1000 ), req.body.currency, result.address, function( err, record ) {
+		newTransaction( req.body.price, req.body.product, ( Math.random() * 1000 ), req.body.currency, result.address, function( err, record ) {
 			
 			if (record ) console.log('new pending tx created ', record);
 			result.txId = record._id;
