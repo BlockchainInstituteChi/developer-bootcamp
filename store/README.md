@@ -37,24 +37,7 @@ After switching versions, you'll always want to delete any remaining `package-lo
 We'll use a MongoDB NoSQL database to store some basic information such as transaction history and unconfirmed crypto transactions. 
 
 ### Ubuntu
-
-Configure the proper apt-key
-
-```sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4```
-
-#### Ubuntu 18.04
-```echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb.list```
-
-#### Ubuntu 16.04
-```echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb.list```
-
-Install the repo
-```
-sudo apt update
-sudo apt install mongodb-org
-```
-
-```sudo apt install mongodb-org=4.0.1 mongodb-org-server=4.0.1 mongodb-org-shell=4.0.1 mongodb-org-mongos=4.0.1 mongodb-org-tools=4.0.1```
+```sudo apt-get install mongodb```
 
 Start the service:
 ```
