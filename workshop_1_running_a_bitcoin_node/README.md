@@ -2,15 +2,13 @@
 
 Welcome to the first workshop. By the time you’ve finished this session you’ll have some hands on experience working with Bitcoin transactions. Here we will setup a Bitcoin node, configure our node, practice bitcoin-cli commands and learn how to build a custom transaction, sign and broadcast it. 
 
-But first, let’s set up Riot for sharing data with instructors and classmates. 
+But first, let’s set up Discord for sharing data with instructors and classmates. 
 
-## Riot
+## Discord
 
-You can think of Riot as a decentralized, open source, Slack. So naturally it’s not a reliable or user friendly, but it is awesome and you can handle it. So let’s go download it!
+Download the Discord program for Linux, Windows and macOS [here](https://discord.com)
 
-Download the Riot program for Linux, Windows and macOS [here](https://about.riot.im/downloads)
-
-Linux desktop instructions [here](https://riot.im/download/desktop/)
+Use this link to join the [Blockchain Institute Discord channel](https://discord.gg/VaKPnxDe)
 
 ## Bitcoind Setup
 
