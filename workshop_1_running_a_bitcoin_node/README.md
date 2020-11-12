@@ -203,4 +203,4 @@ This transaction is now in a format that will be accepted by the network, so let
 
 ## Show Your Work
 
-Find the transaction ID assicated with the transaction you created and post it to the classroom Riot chat. 
+Find the transaction ID assicated with the transaction you created and post it to the classroom.
