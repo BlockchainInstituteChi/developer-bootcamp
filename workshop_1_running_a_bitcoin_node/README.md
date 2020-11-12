@@ -104,9 +104,9 @@ Let's also add our classroom node ip address so that we don't have to include in
 [regtest]
 
 connect=[classroom node IP]
-
-
 ```
+If you did not receive a classroom IP address, just use localhost here, or leave the connect parameter off altogether.
+
 
 Let's kill bitcoind and restart to test if our config is functioning. 
 
