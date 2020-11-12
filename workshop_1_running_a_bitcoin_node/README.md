@@ -12,7 +12,7 @@ Use this link to join the [Blockchain Institute Discord channel](https://discord
 
 ## Bitcoind Setup
 
-We are going to install the software that creates bitcoins and the Bitcoin network. What we will be installing is the latest version of the original client, also known as Bitcoin Core or BitcoinQT. BitcoinQT often referes to the UI, and here we will be primarily using the daemon whichi is known as bitcoind. 
+We are going to install the software that creates bitcoins and the Bitcoin network. What we will be installing is the latest version of the original client, also known as Bitcoin Core or BitcoinQT. BitcoinQT often referes to the UI, and here we will be primarily using the daemon which is known as bitcoind. 
 
 Bitcoin.org has excellent instructions for installing bitcoin core on Linux, Windows and macOS [here](https://bitcoin.org/en/full-node)
 
