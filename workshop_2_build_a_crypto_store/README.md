@@ -33,6 +33,8 @@ Open this file in a text editor to see how it is interacting with your Bitcoin n
 `require('bitcoind-rpc');`
 `require('zeromq');`
 
+NOTE: If ZeroMQ does not install properly, check the formal install instructions- https://www.npmjs.com/package/zeromq
+
 These are the main NPM libraries being imported. You can always find the full module details and documentation on the official NPM Website: https://www.npmjs.com/
 
 *HINT: You'll need to configure your RPC Credentials to match bitcoin.conf, and you will want to add the following lines to bitcoin.conf. Be sure to restart bitcoind once this is complete.*
