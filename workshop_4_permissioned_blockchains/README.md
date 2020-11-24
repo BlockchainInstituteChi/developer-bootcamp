@@ -4,6 +4,8 @@
 
 This repo contains instructions and sample code to help users build a hyperledger for basic supply chain operations. First, we'll cover the basics of Hyperledger and how Docker can be used to simulate a network with multiple nodes, and from there we guide the student through building their own network and deploying it as the back end to the web store we built in Workshop 2. 
 
+NOTE: It's been over 1 year since we've updated these instructions. You may want to follow the tutorial here first: https://hyperledger-fabric.readthedocs.io/en/release-1.4/write_first_app.html
+
 ### Contents
 
 1. [Stuff You Should Know](#stuff-you-should-know)
@@ -12,7 +14,7 @@ This repo contains instructions and sample code to help users build a hyperledge
 
 # Stuff You Should Know
 
-### Reminder to explain genesis and anchor blocks
+### Students should review the difference between genesis and anchor blocks
 See this https://hyperledger-fabric.readthedocs.io/en/release-1.4/channel_update_tutorial.html
 
 Also, anchor peers for orgs is an important topic to touch on
